@@ -3,13 +3,16 @@ public class Hello6 {
         int i = 0;
         switch (args.length) {
             case 0:
-                System.out.println("РџСЂРёРІРµС‚ РІСЃРµРј!");
+                System.out.println("Привет всем!");
                 break;
             default:
                 while (i < args.length) {
-                    System.out.println("РџСЂРёРІРµС‚, " + args[i] + "!");
+                    System.out.println("Привет, " + args[i] + "!");
                     i++;
                 }
+        }
+        for (int j=0;j<args.length;j++){
+            System.out.println("Привет, " + args[j] + "!");
         }
     }
 }
