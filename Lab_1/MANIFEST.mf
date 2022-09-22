@@ -1,0 +1,2 @@
+Created-By: Ta4ilka69
+Main-Class: Lab1
