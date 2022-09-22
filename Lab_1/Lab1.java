@@ -30,21 +30,21 @@ public class Lab1 {
                                 Math.log(Math.pow(Math.sin(Math.pow((2 + Math.pow(x[j], 1 - x[j])) / 3, 2)), 2)));
                     }
                 }
-                System.out.print(String.format("%7.4f", a[i][j])+"   ");
+                System.out.print(String.format("%7.4f", a[i][j]) + "   ");
             }
             System.out.print("\n");
         }
 
     }
 
-    // for Task 2
+    // generate random float (-9,2)
     public static Double rand() {
         Random rnd = new Random();
         double x = rnd.nextDouble() * 11 - 9;
         return (x);
     }
 
-    // for Task 3
+    // check if array contains element
     public static Boolean contain(int[] a, int el) {
         Boolean f = false;
         for (int i = 0; i < a.length; i++) {
