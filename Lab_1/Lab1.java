@@ -4,12 +4,12 @@ import java.util.Random;
 public class Lab1 {
     public static void main(String[] args) {
         // Task 1
-        Short[] f = new Short[18];
+        short[] f = new short[18];
         for (int i = 0; i < f.length; i++) {
             f[i] = (short) (i + 3);
         }
         // Task 2
-        Double[] x = new Double[16];
+        double[] x = new double[16];
         for (int i = 0; i < x.length; i++) {
             x[i] = rand();
         }
