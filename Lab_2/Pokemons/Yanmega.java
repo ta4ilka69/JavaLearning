@@ -1,6 +1,6 @@
 package Pokemons;
 
-import Moves.AncientPower;
+import Moves.StatusMoves.AncientPower;
 import ru.ifmo.se.pokemon.*;
 
 public class Yanmega extends Pokemon {
