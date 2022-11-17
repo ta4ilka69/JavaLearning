@@ -40,7 +40,7 @@ public class Lab1 {
     // generate random float (-9,2)
     public static Double rand() {
         Random rnd = new Random();
-        double x = rnd.nextDouble() * 11 - 9;
+        double x = Math.sin(rnd.nextDouble()*Math.PI/2) * 11 - 9;
         return (x);
     }
 
