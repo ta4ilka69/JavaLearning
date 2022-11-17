@@ -1,4 +1,4 @@
-package Pokemons.Yanma;
+package Pokemons;
 import ru.ifmo.se.pokemon.*;
 
 public final class Yanma extends Pokemon{
