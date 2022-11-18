@@ -1,6 +1,7 @@
 package Moves.StatusMoves;
 
 import ru.ifmo.se.pokemon.Pokemon;
+import ru.ifmo.se.pokemon.Stat;
 import ru.ifmo.se.pokemon.StatusMove;
 import ru.ifmo.se.pokemon.Type;
 
@@ -9,11 +10,12 @@ public class HealPulse extends StatusMove {
         super(Type.PSYCHIC,pow,acc);
     }
 
+
     protected String describe(){
         return "использует Heal Pulse";
     }
 
     protected void applySelfEffects(Pokemon p) {
-
+        p.setMod(Stat.HP, (int) (p.getHP()*2) );
     }
 }

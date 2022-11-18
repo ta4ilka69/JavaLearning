@@ -1,6 +1,7 @@
 package Pokemons;
 
 import Moves.PhysicalMoves.Pound;
+import Moves.StatusMoves.HealPulse;
 import Moves.StatusMoves.Tickle;
 import ru.ifmo.se.pokemon.*;
 
@@ -12,5 +13,7 @@ public final class Alomomola extends Pokemon {
         this.setType(Type.WATER);
         this.addMove(new Pound(40.0, 100.0));
         this.addMove(new Tickle(0.0,100));
+        this.addMove(new HealPulse(0.0,0.0));
+
     }
 }
