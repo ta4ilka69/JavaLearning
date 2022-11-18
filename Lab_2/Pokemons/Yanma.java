@@ -1,6 +1,6 @@
 package Pokemons;
 
-import Moves.SpesialMoves.SonicBoom;
+import Moves.SpecialMoves.SonicBoom;
 import Moves.StatusMoves.AncientPower;
 import Moves.StatusMoves.Roost;
 import ru.ifmo.se.pokemon.*;

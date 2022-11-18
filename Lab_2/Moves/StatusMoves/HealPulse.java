@@ -16,6 +16,6 @@ public class HealPulse extends StatusMove {
     }
 
     protected void applySelfEffects(Pokemon p) {
-        p.setMod(Stat.HP, (int) (p.getHP()*2) );
+        p.setMod(Stat.HP, (int) (p.getHP()/2) );
     }
 }
