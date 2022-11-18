@@ -1,6 +1,7 @@
 package Pokemons;
 
 import Moves.PhysicalMoves.Facade;
+import Moves.StatusMoves.Swagger;
 import ru.ifmo.se.pokemon.Pokemon;
 import ru.ifmo.se.pokemon.Type;
 
@@ -10,5 +11,6 @@ public class Oddish extends Pokemon {
         this.setType(Type.POISON, Type.GRASS);
         this.setStats(45.0, 50.0, 55.0, 75.0, 65.0, 30.0);
         this.addMove(new Facade(70.0, 100.0));
+        this.addMove(new Swagger(0.0, 85.0));
     }
 }

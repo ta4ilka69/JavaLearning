@@ -14,4 +14,8 @@ public class Facade extends DamageMove {
             return p1.getStat(Stat.ATTACK) / p2.getStat(Stat.DEFENSE);
         }
     }
+
+    protected String describe(){
+        return "использует Facade";
+    }
 }
