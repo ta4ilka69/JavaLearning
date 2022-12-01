@@ -7,7 +7,6 @@ public enum Gravity {
     Gravity(double g){
         this.gravity = g;
     }
-
     public double getGravity() {
         return gravity;
     }
