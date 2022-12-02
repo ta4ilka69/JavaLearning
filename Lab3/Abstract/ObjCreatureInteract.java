@@ -6,7 +6,7 @@ import Objects.Stick;
 
 public class ObjCreatureInteract implements Interactions{
     public static void ThrowingStickIntoRiver(Stick t, SomeCreature c, River r){
-        c.deleteInvenrory(t);
+        c.deleteInventory(t);
         r.newTrash(t,c);
         System.out.println(c.getName()+" бросил палку в " + r.getName()+".");
     }

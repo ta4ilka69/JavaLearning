@@ -59,5 +59,14 @@ public class Game implements Entartainments {
         System.out.println("Игра "+this.name+" создана "+this.author.getName()+".");
         System.out.println("У этой игры следующие правила: " + this.description);
     }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode()+description.hashCode()+author.hashCode()+ getIQMinimum().hashCode();
+    }
+
+    public boolean equals(Object o){
+        return o instanceof Game && o.hashCode()==this.hashCode();
+    }
 }
 

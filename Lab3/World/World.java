@@ -144,4 +144,8 @@ public class World {
     public void addOject(River river) {
         this.Objects.add(river);
     }
+
+    public String toString(){
+        return "G: "+this.g+"; Objects: "+this.Objects.toString()+"; Creatures: "+this.Creatures.toString();
+    }
 }

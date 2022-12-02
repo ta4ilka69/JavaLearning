@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public abstract class SomeCreature implements Thing {
     private final String name;
-    private final double weight;
+    private final Double weight;
     private final Intellect intellect;
     private final AliveType type;
     private State state;
@@ -21,7 +21,7 @@ public abstract class SomeCreature implements Thing {
 
     private ArrayList<SomeObj> inventory;
 
-    public SomeCreature(String name, double weight, Intellect intellect, AliveType type, State state) {
+    public SomeCreature(String name, Double weight, Intellect intellect, AliveType type, State state) {
         this.name = name;
         this.intellect = intellect;
         this.type = type;
@@ -102,7 +102,7 @@ public abstract class SomeCreature implements Thing {
         }
     }
 
-    public void deleteInvenrory(SomeObj o){
+    public void deleteInventory(SomeObj o){
         if (this.inventory.contains(o)){
             this.inventory.remove(o);
         }
@@ -116,5 +116,14 @@ public abstract class SomeCreature implements Thing {
                 world.deleteObj(o);
             }
         }
+    }
+
+    @Override
+    public int hashCode() {
+        return weight.hashCode()+name.hashCode()+ intellect.hashCode()+type.hashCode()+ state.hashCode();
+    }
+
+    public boolean equals(Object o){
+        return o instanceof SomeObj && o.hashCode()==this.hashCode();
     }
 }

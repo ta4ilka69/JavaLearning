@@ -41,4 +41,12 @@ public class Battle implements Entartainments {
     public void setPlayers(ArrayList<SomeCreature> a) {
         this.players = a;
     }
+    public int hashCode(){
+        return game.hashCode()+players.hashCode()+winner.hashCode()+rules.hashCode()+active.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof Battle && this.hashCode()==obj.hashCode();
+    }
 }

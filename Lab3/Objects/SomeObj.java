@@ -5,16 +5,18 @@ import Abstract.State;
 import Creatures.SomeCreature;
 import World.Thing;
 
+import java.util.Objects;
+
 public abstract class SomeObj implements Thing {
-    final private double weight;
+    private final Double weight;
     final private String def;
-    final private AliveType type;
+    private final AliveType type;
 
     private State state;
 
     private SomeCreature owner;
 
-    public SomeObj(double weight, String name, AliveType type, State state, SomeCreature owner) {
+    public SomeObj(Double weight, String name, AliveType type, State state, SomeCreature owner) {
         this.weight = weight;
         this.def = name;
         this.type = type;
@@ -25,6 +27,7 @@ public abstract class SomeObj implements Thing {
             System.exit(1);
         }
     }
+
     public SomeObj(double weight, String name, AliveType type, State state) {
         this.weight = weight;
         this.def = name;
@@ -54,19 +57,25 @@ public abstract class SomeObj implements Thing {
 
     public void setState(State state) {
         this.state = state;
-        System.out.println(this.getName()+" "+state.getState()+".");
+        System.out.println(this.getName() + " " + state.getState() + ".");
     }
 
     public State getState() {
         return this.state;
     }
 
-    public boolean equals(SomeObj o){
-        if(o.getName().equals(this.getName())&&o.getState().equals(this.state)&&o.getType()==this.type && o.getWeight()==this.getWeight()){
-            return true;
-        }
-        else{
-            return false;
-        }
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof SomeObj && o.hashCode() == this.hashCode();
+    }
+
+    @Override
+    public int hashCode() {
+        return this.getName().hashCode() + weight.hashCode() + state.getState().hashCode() + type.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "Объект с именем: "+this.def+"; с весом: "+this.weight+"; с состоянием: "+this.state+"; с типом: "+this.type;
     }
 }
