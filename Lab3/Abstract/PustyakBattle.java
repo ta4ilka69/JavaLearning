@@ -1,6 +1,7 @@
 package Abstract;
 
 import Creatures.SomeCreature;
+import Objects.Breach;
 import Objects.River;
 import Objects.SomeObj;
 import Objects.Stick;
@@ -10,12 +11,12 @@ import java.util.ArrayList;
 
 public class PustyakBattle extends Battle {
     private boolean signal;
-    public PustyakBattle(Game g, ArrayList<SomeCreature> players, World w, SomeObj playThing, River r){
+    public PustyakBattle(Game g, ArrayList<SomeCreature> players, World w, SomeObj playThing, River r, Breach b){
         super(g,players);
         signal = false;
         prepare(w, playThing);
         updatePlayers(playThing);
-        start(r);
+        start(r,b);
     }
 
     private void prepare(World w, SomeObj o){
@@ -42,9 +43,12 @@ public class PustyakBattle extends Battle {
         }
         this.setPlayers(newp);
     }
-    private void start(River r){
+    private void start(River r, Breach b){
         for(SomeCreature c: this.getPlayers()) {
             ObjCreatureInteract.ThrowingStickIntoRiver(new Stick(),c,r);
+        }
+        for(SomeCreature c: this.getPlayers()) {
+            ObjCreatureInteract.getCloserTo(c,b);
         }
         r.popup();
         setWinner(r.getTrashInRiver().get(0).getOwner());

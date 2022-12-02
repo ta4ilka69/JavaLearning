@@ -148,4 +148,8 @@ public class World {
     public String toString(){
         return "G: "+this.g+"; Objects: "+this.Objects.toString()+"; Creatures: "+this.Creatures.toString();
     }
+
+    public int hashCode(){
+        return this.toString().hashCode();
+    }
 }

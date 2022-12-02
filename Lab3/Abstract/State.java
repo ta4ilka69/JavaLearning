@@ -9,6 +9,7 @@ public enum State {
     Levitate("левитирует"),
     Undefined("не определился"),
     Lazy("ленится"),
+    ForgetTarget("забыла о цели"),
     Lay("лежит");
     private final String state;
     State(String state){
