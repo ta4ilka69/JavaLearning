@@ -13,4 +13,5 @@ public class Rabbit extends SomeCreature{
     private void printCreate(){
         System.out.println("Создан кролик по имени: "+this.getName()+".");
     }
+
 }

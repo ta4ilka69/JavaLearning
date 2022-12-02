@@ -8,7 +8,8 @@ public enum State {
     FastFall("быстро падает"),
     Levitate("левитирует"),
     Undefined("не определился"),
-    Lazy("ленится");
+    Lazy("ленится"),
+    Lay("лежит");
     private final String state;
     State(String state){
         this.state = state;

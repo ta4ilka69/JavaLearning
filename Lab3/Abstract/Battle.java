@@ -7,12 +7,13 @@ import java.util.ArrayList;
 
 public class Battle implements Entartainments {
     private final Game game;
-    private final ArrayList<SomeCreature> players;
+    private ArrayList<SomeCreature> players;
     private SomeCreature winner;
     private final String rules;
 
     private Boolean active;
-    public Battle(Game g, ArrayList<SomeCreature> players){
+
+    public Battle(Game g, ArrayList<SomeCreature> players) {
         this.game = g;
         this.players = players;
         this.rules = g.getDescription();
@@ -22,13 +23,22 @@ public class Battle implements Entartainments {
     public void setWinner(SomeCreature winner) {
         this.winner = winner;
         this.active = false;
+        System.out.println("Игра закончена!");
     }
 
-    public String getRules(){
+    public String getRules() {
         return this.rules;
     }
 
-    public SomeCreature getWinner(){
+    public SomeCreature getWinner() {
         return this.winner;
+    }
+
+    public ArrayList<SomeCreature> getPlayers() {
+        return this.players;
+    }
+
+    public void setPlayers(ArrayList<SomeCreature> a) {
+        this.players = a;
     }
 }

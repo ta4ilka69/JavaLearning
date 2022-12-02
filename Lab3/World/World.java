@@ -4,6 +4,7 @@ import Abstract.Battle;
 import Abstract.Game;
 import Abstract.State;
 import Creatures.SomeCreature;
+import Objects.River;
 import Objects.SomeObj;
 
 import java.util.ArrayList;
@@ -121,7 +122,7 @@ public class World {
     }
 
     public void newGame(Game g) {
-        Games.add(g)
+        Games.add(g);
     }
 
     public void newBattle(Battle b) {
@@ -134,5 +135,13 @@ public class World {
 
     public ArrayList<Game> getGames() {
         return this.Games;
+    }
+
+    public void deleteObj(SomeObj o){
+        this.Objects.remove(o);
+    }
+
+    public void addOject(River river) {
+        this.Objects.add(river);
     }
 }

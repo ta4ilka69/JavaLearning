@@ -3,6 +3,8 @@ import Creatures.Bear;
 import Creatures.Kenguru;
 import Creatures.Pig;
 import Creatures.Rabbit;
+import Objects.River;
+import Objects.Stick;
 import World.World;
 import World.Gravity;
 
@@ -37,5 +39,20 @@ public class Lab3 {
         strangeOne.setName("Игра в Пустяки");
 
 
+        //Собственно, Battle (добавим 4 палки в мир, чтобы было, чем играть)
+
+        Stick stick1 = new Stick();
+        Stick stick2 = new Stick();
+        Stick stick3 = new Stick();
+        Stick stick4 = new Stick();
+        world.addObject(stick1);
+        world.addObject(stick2);
+        world.addObject(stick3);
+        world.addObject(stick4);
+        River river = new River("Река",State.Lazy,"ВЕЛИКАЯ ЦЕЛЬ");
+        world.addOject(river);
+        //Теперь точно Battle
+
+        PustyakBattle boy = new PustyakBattle(strangeOne,world.getCreatures(),world,new Stick(),river);
     }
 }
