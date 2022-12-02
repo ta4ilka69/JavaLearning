@@ -10,4 +10,16 @@ public enum Gravity {
     public double getGravity() {
         return gravity;
     }
+
+    @Override
+    public String toString() {
+        if(this.getGravity()==0){
+            return "zero";
+        } else if (this.getGravity()<9.8) {
+            return "low";
+        }
+        else{
+            return "high";
+        }
+    }
 }

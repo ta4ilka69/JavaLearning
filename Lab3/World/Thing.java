@@ -1,17 +1,22 @@
 package World;
 
-import State.AliveType;
+import Abstract.AliveType;
+import Abstract.State;
 
 public interface Thing {
-    default double getWeight(){
+    default double getWeight() {
         return 0;
     }
 
-    default  String getName(){
+    default String getName() {
         return "Безымянный";
     }
 
-    default AliveType getType(){
+    default AliveType getType() {
         return AliveType.Substance;
+    }
+
+    default State getState(){
+        return State.Undefined;
     }
 }

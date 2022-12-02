@@ -1,4 +1,4 @@
-package State;
+package Abstract;
 
 public enum AliveType {
     MagicAlive("Неживой объект с сознанием"),
@@ -7,12 +7,11 @@ public enum AliveType {
     Substance("Субстанция");
     private final String type;
 
-    AliveType(String type){
+    AliveType(String type) {
         this.type = type;
     }
 
-    @Override
-    public String toString() {
+    public String getType() {
         return type;
     }
 }

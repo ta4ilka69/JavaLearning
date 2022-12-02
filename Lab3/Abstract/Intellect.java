@@ -1,4 +1,4 @@
-package State;
+package Abstract;
 
 public enum Intellect {
     Zero(0.0),
@@ -11,4 +11,7 @@ public enum Intellect {
         this.intellect = intellect;
     }
 
+    public double getIntellect(){
+        return this.intellect;
+    }
 }
