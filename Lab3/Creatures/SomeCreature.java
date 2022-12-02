@@ -107,6 +107,7 @@ public abstract class SomeCreature implements Thing {
             this.inventory.remove(o);
         }
     }
+    //PARAMetr of random
     public void search(SomeObj o, World world) {
         System.out.println(this.name+" ищет "+o.getName()+".");
         if (world.getObjects().contains(o)) {

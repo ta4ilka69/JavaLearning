@@ -8,10 +8,19 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+//parametrs of Stick
+//lenght
+//diametr
+//могла тонуть
+//могла плыть по течение
+//скорость течения речки
+//plotnost
 
 public class River extends SomeObj{
     private final ArrayList<RiverTrash> trashInRiver;
     private final String goal;
+
+    //make 3 const
 
     public River(String name, State state, String goal){
         super(Double.POSITIVE_INFINITY, name, AliveType.MagicAlive, state);
