@@ -20,11 +20,11 @@ public class World {
 
     public World(Gravity g) {
         System.out.println("Создан мир!");
-        this.setGravity(g);
         Objects = new ArrayList<>();
         Creatures = new ArrayList<>();
         Games = new ArrayList<>();
         Battles = new ArrayList<>();
+        this.setGravity(g);
     }
 
     public void setGravity(Gravity g) {

@@ -9,7 +9,6 @@ import Objects.Stick;
 import World.World;
 import World.Gravity;
 
-import java.util.ArrayList;
 
 public class Lab3 {
     public static void main(String[] args) {
