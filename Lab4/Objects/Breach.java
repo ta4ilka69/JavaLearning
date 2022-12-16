@@ -10,4 +10,8 @@ public class Breach extends SomeObj{
         this.r = r;
         System.out.println("Создан мост "+name+" через реку "+this.r.getName()+".");
     }
+
+    public River getRiver(){
+        return this.r;
+    }
 }

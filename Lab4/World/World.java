@@ -4,8 +4,10 @@ import Abstract.Battle;
 import Abstract.Game;
 import Abstract.State;
 import Creatures.SomeCreature;
+import Objects.Cone;
 import Objects.River;
 import Objects.SomeObj;
+import Objects.StickStageTwo;
 
 import java.util.ArrayList;
 
@@ -99,7 +101,10 @@ public class World {
 
     public void addObject(SomeObj obj) {
         this.Objects.add(obj);
-        System.out.println("Объект "+obj.getName()+" добавлен в мир.");
+        if(!(obj instanceof StickStageTwo || obj instanceof Cone)) {
+            //Too much messages about these objects
+            System.out.println("Объект " + obj.getName() + " добавлен в мир.");
+        }
         if(this.g == Gravity.Zero && obj.getState()!=State.Fly){
             obj.setState(State.Levitate);
         }

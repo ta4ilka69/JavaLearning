@@ -10,9 +10,11 @@ public enum State {
     Undefined("не определился"),
     Lazy("ленится"),
     ForgetTarget("забыла о цели"),
-    Lay("лежит");
+    Lay("лежит"),
+    Silent("молчит");
     private final String state;
-    State(String state){
+
+    State(String state) {
         this.state = state;
     }
 

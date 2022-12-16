@@ -3,7 +3,6 @@ package Abstract;
 import Creatures.SomeCreature;
 import Objects.Breach;
 import Objects.River;
-import Objects.SomeObj;
 import Objects.StickStageTwo;
 import World.World;
 
@@ -45,13 +44,15 @@ public class PustyakBattle extends Battle {
     }
     private void start(River r, Breach b, StickStageTwo o){
         for(SomeCreature c: this.getPlayers()) {
-            ObjCreatureInteract.ThrowingStickIntoRiver(o,c,r);
+            ObjCreatureInteract.ThrowingIntoRiver(o,c,r);
         }
         for(SomeCreature c: this.getPlayers()) {
             ObjCreatureInteract.getCloserTo(c,b);
         }
-        r.popup();
-        setWinner(r.getTrashInRiver().get(0).getOwner());
+        ArrayList<River.RiverTrash> q = r.popup();
+        setWinner(q.get(0).getOwner());
+        r.toOld(q);
+        this.getWinner().setMood(Mood.Worry);
         System.out.println(this.getWinner().getName()+" победил в этой битве, поздравляем!!!");
     }
 

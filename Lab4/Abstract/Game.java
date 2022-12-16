@@ -38,9 +38,6 @@ public class Game implements Entartainments {
         System.out.println(description);
     }
 
-    public SomeCreature getAuthor() {
-        return this.author;
-    }
 
     @Override
     public String getName() {
@@ -55,7 +52,7 @@ public class Game implements Entartainments {
         return IQMinimum;
     }
 
-    private void printCreate(){
+    public void printCreate(){
         System.out.println("Игра "+this.name+" создана "+this.author.getName()+".");
         System.out.println("У этой игры следующие правила: " + this.description);
     }

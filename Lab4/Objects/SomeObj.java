@@ -3,6 +3,7 @@ package Objects;
 import Abstract.AliveType;
 import Abstract.State;
 import Creatures.SomeCreature;
+import Exceptions.AliveTypeException;
 import World.Thing;
 
 
@@ -24,20 +25,18 @@ public abstract class SomeObj implements Thing {
         this.state = state;
         this.owner = owner;
         if (type == AliveType.Alive) {
-            System.out.println("Ошибка: полностью живого объекта без магии невозможно!");
-            System.exit(1);
+            throw new AliveTypeException("Невозможно создать полностью живой объект без магии!");
         }
     }
 
-    public SomeObj(Double weight,Double density, String name, AliveType type, State state) {
+    public SomeObj(Double weight,Double density, String name, AliveType type, State state) throws AliveTypeException {
         this.weight = weight;
         this.density = density;
         this.def = name;
         this.type = type;
         this.state = state;
         if (type == AliveType.Alive) {
-            System.out.println("Ошибка: полностью живого объекта без магии невозможно!");
-            System.exit(1);
+            throw new AliveTypeException("Невозможно создать полностью живой объект без магии!");
         }
     }
 

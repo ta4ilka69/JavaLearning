@@ -5,7 +5,7 @@ import World.Entartainments;
 
 import java.util.ArrayList;
 
-public class Battle implements Entartainments {
+public abstract class Battle implements Entartainments {
     private final Game game;
     private ArrayList<SomeCreature> players;
     private SomeCreature winner;
@@ -15,6 +15,15 @@ public class Battle implements Entartainments {
 
     public Battle(Game g, ArrayList<SomeCreature> players) {
         this.game = g;
+        this.players = players;
+        this.rules = g.getDescription();
+        this.active = true;
+    }
+
+    public Battle(Game g,SomeCreature c) {
+        this.game = g;
+        ArrayList<SomeCreature> players = new ArrayList<>();
+        players.add(c);
         this.players = players;
         this.rules = g.getDescription();
         this.active = true;
