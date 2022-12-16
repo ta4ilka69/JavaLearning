@@ -5,9 +5,9 @@ import Abstract.State;
 import Creatures.SomeCreature;
 import World.Thing;
 
-import java.util.Objects;
 
 public abstract class SomeObj implements Thing {
+    private final Double density;
     private final Double weight;
     final private String def;
     private final AliveType type;
@@ -16,8 +16,9 @@ public abstract class SomeObj implements Thing {
 
     private SomeCreature owner;
 
-    public SomeObj(Double weight, String name, AliveType type, State state, SomeCreature owner) {
+    public SomeObj(Double weight, Double density, String name, AliveType type, State state, SomeCreature owner) {
         this.weight = weight;
+        this.density = density;
         this.def = name;
         this.type = type;
         this.state = state;
@@ -28,8 +29,9 @@ public abstract class SomeObj implements Thing {
         }
     }
 
-    public SomeObj(double weight, String name, AliveType type, State state) {
+    public SomeObj(Double weight,Double density, String name, AliveType type, State state) {
         this.weight = weight;
+        this.density = density;
         this.def = name;
         this.type = type;
         this.state = state;
@@ -67,6 +69,10 @@ public abstract class SomeObj implements Thing {
     @Override
     public boolean equals(Object o) {
         return o instanceof SomeObj && o.hashCode() == this.hashCode();
+    }
+
+    public Double getDensity(){
+        return this.density;
     }
 
     @Override

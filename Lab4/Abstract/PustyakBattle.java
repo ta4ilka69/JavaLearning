@@ -4,22 +4,22 @@ import Creatures.SomeCreature;
 import Objects.Breach;
 import Objects.River;
 import Objects.SomeObj;
-import Objects.Stick;
+import Objects.StickStageTwo;
 import World.World;
 
 import java.util.ArrayList;
 
 public class PustyakBattle extends Battle {
     private boolean signal;
-    public PustyakBattle(Game g, ArrayList<SomeCreature> players, World w, SomeObj playThing, River r, Breach b){
+    public PustyakBattle(Game g, ArrayList<SomeCreature> players, World w, StickStageTwo o, River r, Breach b){
         super(g,players);
         signal = false;
-        prepare(w, playThing);
-        updatePlayers(playThing);
-        start(r,b);
+        prepare(w, o);
+        updatePlayers(o);
+        start(r,b,o);
     }
 
-    private void prepare(World w, SomeObj o){
+    private void prepare(World w, StickStageTwo o){
         while(!this.signal){
             for(SomeCreature c:this.getPlayers()){
                 if(!c.getInventory().contains(o)){
@@ -34,7 +34,7 @@ public class PustyakBattle extends Battle {
             }
         }
     }
-    private void updatePlayers(SomeObj o){
+    private void updatePlayers(StickStageTwo o){
         ArrayList<SomeCreature> newp = new ArrayList<>();
         for(SomeCreature c:this.getPlayers()){
             if(c.getInventory().contains(o)){
@@ -43,9 +43,9 @@ public class PustyakBattle extends Battle {
         }
         this.setPlayers(newp);
     }
-    private void start(River r, Breach b){
+    private void start(River r, Breach b, StickStageTwo o){
         for(SomeCreature c: this.getPlayers()) {
-            ObjCreatureInteract.ThrowingStickIntoRiver(new Stick(),c,r);
+            ObjCreatureInteract.ThrowingStickIntoRiver(o,c,r);
         }
         for(SomeCreature c: this.getPlayers()) {
             ObjCreatureInteract.getCloserTo(c,b);

@@ -1,25 +1,22 @@
 package Creatures;
 
-import Abstract.AliveType;
-import Abstract.Game;
-import Abstract.Intellect;
-import Abstract.State;
+import Abstract.*;
 import Objects.SomeObj;
 import World.Thing;
 import World.World;
 
 import java.util.ArrayList;
 
-public class SomeCreature implements Thing {
+public class SomeCreature implements Thing, Goal {
     private final String name;
     private final Double weight;
     private final Intellect intellect;
     private final AliveType type;
     private State state;
 
-    private ArrayList<Game> knownGames;
+    private final ArrayList<Game> knownGames;
 
-    private ArrayList<SomeObj> inventory;
+    private final ArrayList<SomeObj> inventory;
 
     public SomeCreature(String name, Double weight, Intellect intellect, AliveType type, State state) {
         this.name = name;
@@ -33,6 +30,7 @@ public class SomeCreature implements Thing {
             System.out.println("Ошибка: Невозможно создать неживое существо. (Воспользуйтесь магией и классом Someobj)");
             System.exit(1);
         }
+        printCreate();
     }
 
     @Override
@@ -102,17 +100,28 @@ public class SomeCreature implements Thing {
         }
     }
 
-    public void deleteInventory(SomeObj o){
-        if (this.inventory.contains(o)){
-            this.inventory.remove(o);
-        }
+    public void deleteInventory(SomeObj o) {
+        this.inventory.remove(o);
     }
+
     public void search(SomeObj o, World world) {
-        System.out.println(this.name+" ищет "+o.getName()+".");
+        System.out.println(this.name + " ищет " + o.getName() + ".");
         if (world.getObjects().contains(o)) {
-            if(Math.random()<=o.getVisibility()){
-                System.out.println(this.name+" нашёл "+o.getName()+"!!!");
-                this.addInventory(o);
+            ArrayList<SomeObj> items = new ArrayList<>();
+            for(SomeObj c: world.getObjects()){
+                if(o.equals(c)){
+                    items.add(c);
+                }
+            }
+            if(items.size()==1) {
+                o = items.get((int) (Math.random() * items.size()));
+            }
+            else{
+                o = items.get(0);
+            }
+            if (Math.random() <= o.getVisibility()) {
+                System.out.println(this.name + " нашёл " + o.getName() + "!!!");
+                this.addInventory(world.getObjects().get(world.getObjects().indexOf(o)));
                 world.deleteObj(o);
             }
         }
@@ -120,10 +129,10 @@ public class SomeCreature implements Thing {
 
     @Override
     public int hashCode() {
-        return weight.hashCode()+name.hashCode()+ intellect.hashCode()+type.hashCode()+ state.hashCode();
+        return weight.hashCode() + name.hashCode() + intellect.hashCode() + type.hashCode() + state.hashCode();
     }
 
-    public boolean equals(Object o){
-        return o instanceof SomeObj && o.hashCode()==this.hashCode();
+    public boolean equals(Object o) {
+        return o instanceof SomeObj && o.hashCode() == this.hashCode();
     }
 }
