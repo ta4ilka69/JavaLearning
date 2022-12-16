@@ -16,7 +16,7 @@ public class Lab4 {
         //Creating World
         World world = new World(Gravity.High);
         //Creating Creatures and Objects
-        var Pyx = new SomeCreature("Винни-Пух", 120.0, Intellect.Stupid, AliveType.Alive, State.Stay, Mood.Neutral) {
+        var Pyx = new SomeCreature("Винни-Пух", 80.0, Intellect.Stupid, AliveType.Alive, State.Stay, Mood.Neutral) {
             private String goal;
 
             public void setGoal(String s) {
@@ -73,8 +73,8 @@ public class Lab4 {
         ConeExperiment experiment = new ConeExperiment(conesGame, Pyx, river);
         int winTimes = 0;
         try {
+            winTimes += experiment.start(1);
             winTimes += experiment.start(0);
-            winTimes += experiment.start(2);
             for (int i = 2; i <= (roundsCount / 2) - 1; i++) {
                 winTimes += experiment.start(i);
             }
@@ -104,12 +104,11 @@ public class Lab4 {
         strangeOne.setDescription(strangeOne.getDescription().replace("шишк", "палк"));
         strangeOne.setName("Игра в Пустяки");
 
-
         //Собственно, Battle (добавим 4 палки в мир, чтобы было, чем играть)
         StickStageTwo stick1 = new StickStageTwo(3000., 3., 0.001);
         StickStageTwo stick2 = new StickStageTwo(999., 2.5, 0.002);
         StickStageTwo stick3 = new StickStageTwo(500., 3.5, 0.004);
-        StickStageTwo stick4 = new StickStageTwo(1., 4.5, 0.001);
+        StickStageTwo stick4 = new StickStageTwo(451., 4.5, 0.001);
         world.addObject(stick1);
         world.addObject(stick2);
         world.addObject(stick3);
@@ -121,7 +120,7 @@ public class Lab4 {
         players.add(RuSmall);
         //Теперь точно Battle
         PustyakBattle boy = new PustyakBattle(strangeOne, players, world, stick2, river, breach);
-        world.newBattle(boy);
+         world.newBattle(boy);
         //Бред какой-то, ну ладно🤷‍
         river.setState(State.ForgetTarget);
 
@@ -142,5 +141,6 @@ public class Lab4 {
             t.setMood(Mood.Dreamy);
         }
         Pyx.setMood(Mood.Happy);
+        Pyatachok.setMood(Mood.Thief);
     }
 }

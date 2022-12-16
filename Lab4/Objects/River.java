@@ -40,7 +40,7 @@ public class River extends SomeObj implements Goal {
 
         private Double timeToUpCalc(RiverTrash o) {
             if (o.getDensity() >= this.river.getDensity()) {
-                return Double.NEGATIVE_INFINITY;
+                return Double.POSITIVE_INFINITY;
             } else {
                 return (Math.sqrt(Math.pow(this.h, 2) + Math.pow(this.river.getFlowRate(), 2))) / (this.river.getDensity() / o.getDensity());
             }
@@ -48,7 +48,7 @@ public class River extends SomeObj implements Goal {
 
         public void setPop() {
             if (this.h != 0) {
-                if (this.timeToUp >= 0) {
+                if (this.timeToUp != Double.POSITIVE_INFINITY) {
                     this.h = 0;
                     System.out.println(this.getName() + " всплыл через " + String.format("%.1f0", this.timeToUp) + ", хозяин: " + this.getOwner().getName() + ".");
                 } else {

@@ -44,7 +44,7 @@ public class PustyakBattle extends Battle {
     }
     private void start(River r, Breach b, StickStageTwo o){
         for(SomeCreature c: this.getPlayers()) {
-            ObjCreatureInteract.ThrowingIntoRiver(o,c,r);
+            ObjCreatureInteract.ThrowingIntoRiver(c.getInventory().get(c.getInventory().indexOf(o)),c,r);
         }
         for(SomeCreature c: this.getPlayers()) {
             ObjCreatureInteract.getCloserTo(c,b);

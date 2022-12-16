@@ -179,15 +179,15 @@ public class SomeCreature implements Thing, Goal {
                     items.add(c);
                 }
             }
-            if (items.size() == 1) {
+            if (items.size() != 1) {
                 o = items.get((int) (Math.random() * items.size()));
             } else {
                 o = items.get(0);
             }
             if (Math.random() <= o.getVisibility()) {
-                if (!(o instanceof StickStageTwo || o instanceof Cone)) {
+                //if (!(o instanceof StickStageTwo || o instanceof Cone)) {
                     System.out.println(this.name + " нашёл " + o.getName() + "!!!");
-                }
+                //}
                 this.addInventory(world.getObjects().get(world.getObjects().indexOf(o)));
                 world.deleteObj(o);
             }

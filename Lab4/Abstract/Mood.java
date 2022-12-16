@@ -6,6 +6,7 @@ public enum Mood {
     Dreamy("задумчивым"),
     Lively("заводным"),
     Worry("волнующимся"),
+    Thief("ворует лабы"),
     Silent("молчаливым");
 
     private final String mood;

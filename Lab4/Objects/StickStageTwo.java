@@ -21,9 +21,6 @@ public class StickStageTwo extends SomeObj {
         return this.dia;
     }
     public boolean equals(Object o){
-        if(this.getOwner()==null){
-            return o instanceof StickStageTwo;
-        }
-        return (o instanceof StickStageTwo) && (this.getOwner()==((StickStageTwo) o).getOwner());
+        return o instanceof StickStageTwo;
     }
 }
