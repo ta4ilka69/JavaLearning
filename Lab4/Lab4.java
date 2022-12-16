@@ -16,11 +16,12 @@ public class Lab4 {
         //Creating World
         World world = new World(Gravity.High);
         //Creating Creatures and Objects
-        var Pyx = new SomeCreature("Винни-Пух", 120.0, Intellect.Stupid, AliveType.Alive, State.Stay, Mood.Neutral){
+        var Pyx = new SomeCreature("Винни-Пух", 120.0, Intellect.Stupid, AliveType.Alive, State.Stay, Mood.Neutral) {
             private String goal;
-            public void setGoal(String s){
+
+            public void setGoal(String s) {
                 this.goal = s;
-                System.out.println("У "+this.getName()+" новая цель: "+s);
+                System.out.println("У " + this.getName() + " новая цель: " + s);
             }
         };
         world.addCreature(Pyx);
