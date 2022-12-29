@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class Lab4 {
     public static void main(String[] args) {
         //Creating World
-        World world = new World(Gravity.High);
+        World world = new World(Gravity.Low);
         //Creating Creatures and Objects
         var Pyx = new SomeCreature("Винни-Пух", 80.0, Intellect.Stupid, AliveType.Alive, State.Stay, Mood.Neutral) {
             private String goal;
@@ -43,6 +43,13 @@ public class Lab4 {
                 }
                 s = s.substring(0, s.length() - 2);
                 System.out.println(s + " увидели " + p.getName() + ", который " + p.getPosition());
+                for (SomeCreature t: c){
+                    t.setMood(Mood.Dreamy);
+                    t.setState(State.Silent);
+                    if (t.getName()=="Винни-Пух"){
+                        t.setMood(Mood.Happy);
+                    }
+                }
             }
         };
         SomeCreature Ia = new SomeCreature("Иа-Иа", 100., Intellect.Clever, AliveType.Alive, State.Swim, Mood.Neutral);
@@ -74,7 +81,7 @@ public class Lab4 {
         int winTimes = 0;
         try {
             winTimes += experiment.start(1);
-            winTimes += experiment.start(0);
+            winTimes += experiment.start(2);
             for (int i = 2; i <= (roundsCount / 2) - 1; i++) {
                 winTimes += experiment.start(i);
             }
@@ -136,10 +143,6 @@ public class Lab4 {
             }
         }
         interactions.saw(notSwim, Ia);
-        for (SomeCreature t : world.getCreatures()) {
-            t.setState(State.Silent);
-            t.setMood(Mood.Dreamy);
-        }
         Pyx.setMood(Mood.Happy);
         Pyatachok.setMood(Mood.Thief);
     }

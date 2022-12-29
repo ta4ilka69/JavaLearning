@@ -9,7 +9,7 @@ public class Cone extends SomeObj{
     }
 
     public boolean equals(Object o){
-        if(this.getOwner()==null){
+        if(this.getOwner()==null) {
             return o instanceof Cone;
         }
         return (o instanceof Cone) && (this.getOwner()==((Cone) o).getOwner());
