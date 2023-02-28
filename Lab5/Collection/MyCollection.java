@@ -18,7 +18,6 @@ public class MyCollection {
 
     public void print(OutputStream out) {
         Writer w = new PrintWriter(out);
-        var a = HumanBeing.class.getDeclaredFields();
         for (HumanBeing c:collection
              ) {
             for (:

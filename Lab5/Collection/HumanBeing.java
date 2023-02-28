@@ -65,6 +65,6 @@ public class HumanBeing {
     public enum WeaponType {
         AXE,
         RIFLE,
-        MACHINE_GUN;
+        MACHINE_GUN
     }
 }
