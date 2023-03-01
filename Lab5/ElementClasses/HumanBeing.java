@@ -1,6 +1,8 @@
 package ElementClasses;
 
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Date;
 
 public class HumanBeing implements Comparable<HumanBeing> {
@@ -29,12 +31,12 @@ public class HumanBeing implements Comparable<HumanBeing> {
             WeaponType weaponType,
             String car
     ) {
-        if(id<0||name.equals("")||name==null||coordinates==null||creationDate==null||realHero==null||hasToothpick==null||impactSpeed==null||soundtrackName==null||car==null){
+        if (id < 0 || name.equals("") || name == null || coordinates == null || creationDate == null || realHero == null || hasToothpick == null || impactSpeed == null || soundtrackName == null || car == null) {
             throw new IllegalArgumentException("Значение некоторых аргументов не может быть null или пустым");
         }
         this.id = id;
         this.name = name;
-        this.coordinates =coordinates;
+        this.coordinates = coordinates;
         this.creationDate = creationDate;
         this.realHero = realHero;
         this.hasToothpick = hasToothpick;
@@ -45,7 +47,21 @@ public class HumanBeing implements Comparable<HumanBeing> {
         this.car = new Car(car);
     }
 
-    public int compareTo(HumanBeing humanBeing) {
+    public HumanBeing(Integer id,
+                      String name,
+                      float x, Double y,
+                      Boolean realHero,
+                      Boolean hasToothpick,
+                      Integer impactSpeed,
+                      String soundtrackName,
+                      float minutesOfWaiting,
+                      WeaponType weaponType,
+                      String car) {
+        this.id = id;
+        new HumanBeing(id, name, new Coordinates(x, y), new Date(), realHero, hasToothpick, impactSpeed, soundtrackName, minutesOfWaiting, weaponType, car);
+    }
+
+    public int compareTo(@NotNull HumanBeing humanBeing) {
         return Integer.signum(this.id.compareTo(humanBeing.getId()) + this.name.compareTo(humanBeing.getName()) + this.coordinates.compareTo(humanBeing.getCoordinates()) + this.creationDate.compareTo(humanBeing.getCreationDate()) + this.realHero.compareTo(humanBeing.getRealHero()) + this.hasToothpick.compareTo(humanBeing.getHasToothpick()) + this.impactSpeed.compareTo(humanBeing.getImpactSpeed()) + this.soundtrackName.compareTo(humanBeing.getSoundtrackName()) + Float.compare(this.minutesOfWaiting, humanBeing.getMinutesOfWaiting()) + this.weaponType.compareTo(humanBeing.getWeaponType()) + this.car.compareTo(humanBeing.getCar()));
     }
 

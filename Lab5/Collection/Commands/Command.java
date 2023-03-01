@@ -1,4 +1,4 @@
-package Collection.Commands.Interactive;
+package Collection.Commands;
 
 public interface Command {
     public void execute();
