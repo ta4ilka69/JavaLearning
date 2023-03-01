@@ -1,30 +1,23 @@
 package Collection;
 
-import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.io.Writer;
+import java.time.LocalDate;
 import java.util.PriorityQueue;
+
+import ElementClasses.HumanBeing;
 
 public class MyCollection {
     private PriorityQueue<HumanBeing> collection;
+    private LocalDate creationDate;
 
     public MyCollection() {
         this.collection = new PriorityQueue<>();
+        creationDate = LocalDate.now();
     }
 
-    public void delete(int id) {
-        this.collection.remove(this.collection.toArray()[id]);
-    }
+    public void insert()
 
-    public void print(OutputStream out) {
-        Writer w = new PrintWriter(out);
-        for (HumanBeing c:collection
-             ) {
-            for (:
-                 ) {
-                
-            }
-        }
+    public LocalDate getCreationDate() {
+        return creationDate;
     }
 
 
