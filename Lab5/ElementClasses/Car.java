@@ -35,4 +35,8 @@ public class Car implements Comparable<Car> {
             return this.name.compareTo(o.getName());
         }
     }
+
+    public String toString(){
+        return this.name;
+    }
 }

@@ -1,0 +1,3 @@
+add
+execute add5.txt
+exit

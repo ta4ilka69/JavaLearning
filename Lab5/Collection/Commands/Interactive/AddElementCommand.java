@@ -1,23 +1,19 @@
 package Collection.Commands.Interactive;
 
 import Collection.Commands.AbstractCommand;
-import Collection.Commands.Command;
 import Collection.MyCollection;
 import ElementClasses.HumanBeing;
 
-public class AddElementCommand extends AbstractCommand implements Command {
-    private MyCollection collection;
-    private HumanBeing elementToAdd;
+public class AddElementCommand extends AbstractCommand{
     public AddElementCommand(MyCollection collection, HumanBeing h) {
-        super(collection);
-        this.elementToAdd = h;
+        super(collection,h);
     }
 
     public void execute() {
-        this.collection.add(this.elementToAdd);
+        super.getCollection().add(super.getElement());
     }
 
-    public String info(){
+    public static String info(){
         return "add {element} : добавить новый элемент в коллекцию";
     }
 }

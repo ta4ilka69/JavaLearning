@@ -1,5 +1,6 @@
 package ElementClasses;
 
+
 public class Coordinates implements Comparable<Coordinates> {
     private final float x;
     private final Double y;
@@ -17,5 +18,9 @@ public class Coordinates implements Comparable<Coordinates> {
     }
     public int compareTo(Coordinates coordinates) {
         return Integer.signum(Float.compare(this.x, coordinates.getX()) + this.y.compareTo(coordinates.getY()));
+    }
+
+    public String toString(){
+        return Float.toString(this.getX())+";"+Double.toString(this.getY());
     }
 }

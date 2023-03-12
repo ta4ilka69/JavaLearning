@@ -1,11 +1,17 @@
 package ElementClasses;
 
 public enum WeaponType {
-    AXE(1),
-    RIFLE(30),
-    MACHINE_GUN(100);
+    AXE(1,"AXE"),
+    RIFLE(30,"RFILE"),
+    MACHINE_GUN(100,"MACHINE_GUN");
     public final int damage;
-    WeaponType(int i) {
+    public final String name;
+    WeaponType(int i,String s) {
         this.damage = i;
+        this.name = s;
     }
+    public String toString(){
+        return this.name;
+    }
+
 }

@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import java.util.PriorityQueue;
 
 import ElementClasses.HumanBeing;
+import org.jetbrains.annotations.NotNull;
 
-public class MyCollection {
+public class MyCollection{
     private PriorityQueue<HumanBeing> collection;
     private LocalDate creationDate;
 
@@ -41,5 +42,10 @@ public class MyCollection {
 
     public void clear() {
         this.collection.clear();
+    }
+    public HumanBeing[] list(){
+        HumanBeing[] res = new HumanBeing[this.getSize()];
+        this.collection.toArray(res);
+        return res;
     }
 }

@@ -22,7 +22,6 @@ public class HumanBeing implements Comparable<HumanBeing> {
             Integer id,
             String name,
             Coordinates coordinates,
-            Date creationDate,
             Boolean realHero,
             Boolean hasToothpick,
             Integer impactSpeed,
@@ -31,13 +30,13 @@ public class HumanBeing implements Comparable<HumanBeing> {
             WeaponType weaponType,
             String car
     ) {
-        if (id < 0 || name.equals("") || name == null || coordinates == null || creationDate == null || realHero == null || hasToothpick == null || impactSpeed == null || soundtrackName == null || car == null) {
+        if (id < 0 || name.equals("") || coordinates == null || realHero == null || hasToothpick == null || impactSpeed == null || soundtrackName == null || car == null) {
             throw new IllegalArgumentException("Значение некоторых аргументов не может быть null или пустым");
         }
         this.id = id;
         this.name = name;
         this.coordinates = coordinates;
-        this.creationDate = creationDate;
+        this.creationDate = new Date();
         this.realHero = realHero;
         this.hasToothpick = hasToothpick;
         this.impactSpeed = impactSpeed;
@@ -45,20 +44,6 @@ public class HumanBeing implements Comparable<HumanBeing> {
         this.minutesOfWaiting = minutesOfWaiting;
         this.weaponType = weaponType;
         this.car = new Car(car);
-    }
-
-    public HumanBeing(Integer id,
-                      String name,
-                      float x, Double y,
-                      Boolean realHero,
-                      Boolean hasToothpick,
-                      Integer impactSpeed,
-                      String soundtrackName,
-                      float minutesOfWaiting,
-                      WeaponType weaponType,
-                      String car) {
-        this.id = id;
-        new HumanBeing(id, name, new Coordinates(x, y), new Date(), realHero, hasToothpick, impactSpeed, soundtrackName, minutesOfWaiting, weaponType, car);
     }
 
     public int compareTo(@NotNull HumanBeing humanBeing) {
