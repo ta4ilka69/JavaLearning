@@ -6,7 +6,7 @@ public class Car implements Comparable<Car> {
     private static final String[] coolCars = new String[]{"Honda", "Porsche", "Lamborghini", "Mustang", "Ferrari", "Bugatti", "Tesla", "Audi", "BMW", "Mercedes"};
 
     public Car(String name) {
-        if (name==null) {
+        if (name == null) {
             throw new NullPointerException("Car name cannot be null");
         }
         this.name = name;
@@ -22,8 +22,14 @@ public class Car implements Comparable<Car> {
     public String getName() {
         return name;
     }
+
     public boolean isCool() {
         return cool;
+    }
+
+    //if you think a car is cool, it`s your problem but OK I`ll let you change cool status
+    public void setCool(boolean cool) {
+        this.cool = cool;
     }
 
     public int compareTo(Car o) {
