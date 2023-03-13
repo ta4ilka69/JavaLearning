@@ -1,4 +1,4 @@
-package Collection.Commands;
+package Commands;
 
 import Collection.MyCollection;
 import ElementClasses.HumanBeing;

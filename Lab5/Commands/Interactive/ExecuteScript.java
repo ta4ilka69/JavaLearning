@@ -1,17 +1,16 @@
-package Collection.Commands.Interactive;
+package Commands.Interactive;
 
-import Collection.Commands.AbstractCommand;
-import Collection.Commands.CommandManager;
+import Commands.AbstractCommand;
+import Commands.CommandManager;
 import Collection.MyCollection;
 
 import java.io.*;
 
 public class ExecuteScript extends AbstractCommand {
-    private String path;
+
     private FileInputStream input;
     public ExecuteScript(MyCollection collection,String path) throws FileNotFoundException {
         super(collection, null);
-        this.path = path;
         this.input = new FileInputStream(path);
     }
 

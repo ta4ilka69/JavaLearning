@@ -1,4 +1,4 @@
-package Collection.Commands;
+package Commands;
 
 public interface Executable {
     public void execute();

@@ -1,4 +1,4 @@
-package Collection.Commands;
+package Commands;
 
 import Collection.CollectionManager;
 import Collection.MyCollection;

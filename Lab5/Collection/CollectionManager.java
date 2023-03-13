@@ -1,10 +1,7 @@
 package Collection;
 
-import Collection.Commands.AbstractCommand;
-import Collection.Commands.Interactive.AddElementCommand;
-import Collection.Commands.Interactive.ErrorCommand;
-import Collection.Commands.Interactive.ExecuteScript;
-import Collection.Commands.Interactive.UnknownCommand;
+import Commands.AbstractCommand;
+import Commands.Interactive.*;
 import ElementClasses.Coordinates;
 import ElementClasses.HumanBeing;
 import ElementClasses.WeaponType;
@@ -29,28 +26,26 @@ public class CollectionManager {
         AbstractCommand c;
         switch (command) {
             case "add" -> {
-                HumanBeing h = new HumanBeing(id,"Name", new Coordinates(3.0F,4.),true,true,3,"sigma", 2.0F, WeaponType.AXE,"Porsche");
+                HumanBeing h = new HumanBeing(id,"Name", new Coordinates(3.0F,4.),true,true,3,"si,\"gma", 2.0F, WeaponType.AXE,"Porsche");
                 c = new AddElementCommand(collection, h);
-                historyManager.update(c);
-                return c;
             }
             case "execute"->{
                 try {
                     c = new ExecuteScript(collection, commandLine[1]);
-                    historyManager.update(c);
-                    return c;
                 }
                 catch (FileNotFoundException e){
                     c = new ErrorCommand("File for executing not found",command);
-                    historyManager.update(c);
-                    return c;
                 }
+            }
+            case "save"->{
+                c = new SaveCommand(collection);
             }
             default -> {
                 c = new UnknownCommand(command);
-                historyManager.update(c);
-                return c;
             }
+
         }
+        historyManager.update(c);
+        return c;
     }
 }

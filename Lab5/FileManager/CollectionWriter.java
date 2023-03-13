@@ -1,6 +1,6 @@
 package FileManager;
 
-import Collection.Commands.Executable;
+import Commands.Executable;
 import Collection.MyCollection;
 import ElementClasses.HumanBeing;
 import java.io.FileNotFoundException;
@@ -8,10 +8,11 @@ import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 
 public class CollectionWriter implements Executable {
-    private static String pathToFile = "Collection/collection.csv";
+    private String pathToFile;
     private MyCollection collection;
     public CollectionWriter(MyCollection collection){
         this.collection = collection;
+        this.pathToFile = collection.getPathToSave();
     }
 
     public void execute(){
@@ -23,7 +24,7 @@ public class CollectionWriter implements Executable {
                 String s=h.getId().toString()+',';
                 s+=h.getName();
                 String name = h.getName();
-                s = (name.contains(",")) ? s+'"'+name+'"': s+name;
+                s += screening(name);
                 s+=',';
                 s+=h.getCoordinates().toString();
                 s+=',';
@@ -36,17 +37,18 @@ public class CollectionWriter implements Executable {
                 s+=h.getImpactSpeed().toString();
                 s+=',';
                 String sound = h.getSoundtrackName();
-                s = (sound.contains(","))? s+'"'+sound+'"':s+sound;
+                s += screening(sound);
                 s+=',';
                 s+=Float.toString(h.getMinutesOfWaiting());
                 s+=',';
                 s+=h.getWeaponType().toString();
                 s+=',';
                 String car = h.getCar().toString();
-                s = (car.contains(","))? s+'"'+car+'"':s+car;
+                s += screening(car);
                 s+='\n';
                 writer.write(s);
             }
+            writer.close();
         }
         catch (Exception e){
             if(e instanceof FileNotFoundException){
@@ -54,7 +56,18 @@ public class CollectionWriter implements Executable {
             }
         }
     }
-
+    private String screening(String s){
+        String res = "";
+        for(int i = 0;i<s.length();i++){
+            if(s.charAt(i)==','||s.charAt(i)=='"'){
+                res+='"'+s.charAt(i)+'"';
+            }
+            else{
+                res+=s.charAt(i);
+            }
+        }
+        return res;
+    }
     public static String info() {
         return "Writes collection to file";
     }

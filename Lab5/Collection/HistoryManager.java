@@ -1,6 +1,6 @@
 package Collection;
 
-import Collection.Commands.AbstractCommand;
+import Commands.AbstractCommand;
 
 import java.util.ArrayList;
 

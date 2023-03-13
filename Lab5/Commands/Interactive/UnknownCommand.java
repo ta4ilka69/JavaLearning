@@ -1,6 +1,6 @@
-package Collection.Commands.Interactive;
+package Commands.Interactive;
 
-import Collection.Commands.AbstractCommand;
+import Commands.AbstractCommand;
 
 public class UnknownCommand extends AbstractCommand {
     private String command;
