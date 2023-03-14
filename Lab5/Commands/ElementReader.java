@@ -26,6 +26,19 @@ public class ElementReader {
             args[0] = this.collection.getFreeId();
             j++;
         }
+        for(int i = j;i<11;i++){
+            if(scanner.hasNext()) {
+                if (i == 0 || i == 5) {
+
+                }
+            }
+            else{
+
+            }
+        }
+    }
+
+    public String getLine(int arg){
 
     }
 }
