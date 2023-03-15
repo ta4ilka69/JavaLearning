@@ -2,6 +2,7 @@ package FileManager;
 
 import Commands.Executable;
 import Collection.MyCollection;
+import ElementClasses.Coordinates;
 import ElementClasses.HumanBeing;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -22,11 +23,13 @@ public class CollectionWriter implements Executable {
             for (HumanBeing h:collection.list()
                  ) {
                 String s=h.getId().toString()+',';
-                s+=h.getName();
                 String name = h.getName();
                 s += screening(name);
                 s+=',';
-                s+=h.getCoordinates().toString();
+                Coordinates c = h.getCoordinates();
+                s+=c.xToString();
+                s+=',';
+                s+=c.yToString();
                 s+=',';
                 s+=h.getCreationDate().toString();
                 s+=',';
@@ -39,12 +42,14 @@ public class CollectionWriter implements Executable {
                 String sound = h.getSoundtrackName();
                 s += screening(sound);
                 s+=',';
-                s+=Float.toString(h.getMinutesOfWaiting());
+                s+=Double.toString(h.getMinutesOfWaiting());
                 s+=',';
                 s+=h.getWeaponType().toString();
                 s+=',';
                 String car = h.getCar().toString();
                 s += screening(car);
+                s+=',';
+                s+=Boolean.toString(h.getCar().isCool());
                 s+='\n';
                 writer.write(s);
             }
@@ -60,7 +65,7 @@ public class CollectionWriter implements Executable {
         String res = "";
         for(int i = 0;i<s.length();i++){
             if(s.charAt(i)==','||s.charAt(i)=='"'){
-                res+='"'+s.charAt(i)+'"';
+                res+="\""+s.charAt(i)+"\"";
             }
             else{
                 res+=s.charAt(i);

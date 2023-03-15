@@ -1,26 +1,26 @@
 package ElementClasses;
 
 public class Car implements Comparable<Car> {
-    private final String name;
+    private final String carName;
     private boolean cool;
     private static final String[] coolCars = new String[]{"Honda", "Porsche", "Lamborghini", "Mustang", "Ferrari", "Bugatti", "Tesla", "Audi", "BMW", "Mercedes"};
 
-    public Car(String name) {
-        if (name == null) {
+    public Car(String carName) {
+        if (carName == null) {
             throw new NullPointerException("Car name cannot be null");
         }
-        this.name = name;
+        this.carName = carName;
         this.cool = false;
         for (String coolCar : coolCars) {
-            if (coolCar.equals(name)) {
+            if (coolCar.equals(carName)) {
                 this.cool = true;
                 break;
             }
         }
     }
 
-    public String getName() {
-        return name;
+    public String getCarName() {
+        return carName;
     }
 
     public boolean isCool() {
@@ -38,11 +38,11 @@ public class Car implements Comparable<Car> {
         } else if (!this.cool && o.isCool()) {
             return -1;
         } else {
-            return this.name.compareTo(o.getName());
+            return this.carName.compareTo(o.getCarName());
         }
     }
 
     public String toString(){
-        return this.name;
+        return this.carName;
     }
 }

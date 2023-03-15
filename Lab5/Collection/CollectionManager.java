@@ -1,20 +1,27 @@
 package Collection;
 
 import Commands.AbstractCommand;
+import Commands.ElementReader;
 import Commands.Interactive.*;
 import ElementClasses.Coordinates;
 import ElementClasses.HumanBeing;
 import ElementClasses.WeaponType;
 
 import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.util.Scanner;
 
 public class CollectionManager {
     private MyCollection collection;
     private HistoryManager historyManager;
-    private static int id = 1;
+    private Scanner scanner;
+    private boolean auto;
 
-    public CollectionManager(MyCollection collection) {
+
+    public CollectionManager(MyCollection collection, Scanner scanner, boolean auto){
         this.collection = collection;
+        this.scanner = scanner;
+        this.auto = auto;
         this.historyManager = new HistoryManager(6);
     }
 
@@ -26,7 +33,8 @@ public class CollectionManager {
         AbstractCommand c;
         switch (command) {
             case "add" -> {
-                HumanBeing h = new HumanBeing(id,"Name", new Coordinates(3.0F,4.),true,true,3,"si,\"gma", 2.0F, WeaponType.AXE,"Porsche");
+                ElementReader reader = new ElementReader(scanner, collection, auto);
+                HumanBeing h = reader.getElement();
                 c = new AddElementCommand(collection, h);
             }
             case "execute"->{

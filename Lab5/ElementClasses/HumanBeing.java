@@ -1,20 +1,18 @@
 package ElementClasses;
 
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Date;
 
 public class HumanBeing implements Comparable<HumanBeing> {
-    private final Integer id;
+    private final int id;
     private String name;
     private Coordinates coordinates;
     private Date creationDate;
     private Boolean realHero;
     private Boolean hasToothpick;
-    private Integer impactSpeed;
+    private Float impactSpeed;
     private String soundtrackName;
-    private float minutesOfWaiting;
+    private double minutesOfWaiting;
     private WeaponType weaponType;
     private Car car;
 
@@ -24,13 +22,13 @@ public class HumanBeing implements Comparable<HumanBeing> {
             Coordinates coordinates,
             Boolean realHero,
             Boolean hasToothpick,
-            Integer impactSpeed,
+            Float impactSpeed,
             String soundtrackName,
-            float minutesOfWaiting,
+            double minutesOfWaiting,
             WeaponType weaponType,
             String car
     ) {
-        if (id < 0 || name.equals("") || coordinates == null || realHero == null || hasToothpick == null || impactSpeed == null || soundtrackName == null || car == null) {
+        if (id < 0 || name.equals("") || coordinates == null || realHero == null || impactSpeed == null || soundtrackName == null || car == null) {
             throw new IllegalArgumentException("Значение некоторых аргументов не может быть null или пустым");
         }
         this.id = id;
@@ -46,8 +44,8 @@ public class HumanBeing implements Comparable<HumanBeing> {
         this.car = new Car(car);
     }
 
-    public int compareTo(@NotNull HumanBeing humanBeing) {
-        return Integer.signum(this.id.compareTo(humanBeing.getId()) + this.name.compareTo(humanBeing.getName()) + this.coordinates.compareTo(humanBeing.getCoordinates()) + this.creationDate.compareTo(humanBeing.getCreationDate()) + this.realHero.compareTo(humanBeing.getRealHero()) + this.hasToothpick.compareTo(humanBeing.getHasToothpick()) + this.impactSpeed.compareTo(humanBeing.getImpactSpeed()) + this.soundtrackName.compareTo(humanBeing.getSoundtrackName()) + Float.compare(this.minutesOfWaiting, humanBeing.getMinutesOfWaiting()) + this.weaponType.compareTo(humanBeing.getWeaponType()) + this.car.compareTo(humanBeing.getCar()));
+    public int compareTo(HumanBeing humanBeing) {
+        return Integer.signum(Integer.compare(this.id, humanBeing.id) + this.name.compareTo(humanBeing.getName()) + this.coordinates.compareTo(humanBeing.getCoordinates()) + this.creationDate.compareTo(humanBeing.getCreationDate()) + this.realHero.compareTo(humanBeing.getRealHero())  + this.impactSpeed.compareTo(humanBeing.getImpactSpeed()) + this.soundtrackName.compareTo(humanBeing.getSoundtrackName()) + Double.compare(this.minutesOfWaiting, humanBeing.getMinutesOfWaiting()) + this.weaponType.compareTo(humanBeing.getWeaponType()) + this.car.compareTo(humanBeing.getCar()));
     }
 
     public String getName() {
@@ -74,11 +72,11 @@ public class HumanBeing implements Comparable<HumanBeing> {
         return coordinates;
     }
 
-    public float getMinutesOfWaiting() {
+    public double getMinutesOfWaiting() {
         return minutesOfWaiting;
     }
 
-    public Integer getImpactSpeed() {
+    public Float getImpactSpeed() {
         return impactSpeed;
     }
 
@@ -110,11 +108,11 @@ public class HumanBeing implements Comparable<HumanBeing> {
         this.hasToothpick = hasToothpick;
     }
 
-    public void setImpactSpeed(Integer impactSpeed) {
+    public void setImpactSpeed(Float impactSpeed) {
         this.impactSpeed = impactSpeed;
     }
 
-    public void setMinutesOfWaiting(float minutesOfWaiting) {
+    public void setMinutesOfWaiting(double minutesOfWaiting) {
         this.minutesOfWaiting = minutesOfWaiting;
     }
 

@@ -2,7 +2,7 @@ package ElementClasses;
 
 public enum WeaponType {
     AXE(1,"AXE"),
-    RIFLE(30,"RFILE"),
+    RIFLE(30,"RIFLE"),
     MACHINE_GUN(100,"MACHINE_GUN");
     public final int damage;
     public final String name;

@@ -64,7 +64,7 @@ public class MyCollection {
     }
 
     public int getFreeId(){
-        int i = 0;
+        int i = 1;
         while(this.id.contains(i)){
             i++;
         }

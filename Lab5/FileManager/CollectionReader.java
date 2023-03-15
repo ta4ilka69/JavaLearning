@@ -42,8 +42,8 @@ public class CollectionReader implements Executable {
                     String line = this.scanner.nextLine();
                     String t = "";
                     int i = 0;
-                    for(int j = 0;j<11;j++){
-                        if(j!=1&&j!=7&&j!=10){
+                    for(int j = 0;j<13;j++){
+                        if(j!=1&&j!=8&&j!=11){
                             while(i<line.length()&&line.charAt(i)!=','){
                                 t+=line.charAt(i);
                                 i+=1;
@@ -51,16 +51,24 @@ public class CollectionReader implements Executable {
                         }
                         else{
                             boolean screening = false;
-                            while(i<line.length()&&(line.charAt(i)!=','||!screening)){
+                            while(i<line.length()&&(line.charAt(i)!=','||screening)){
                                 if(line.charAt(i)=='"'){
                                     screening = !screening;
                                     i++;
+                                    if(screening){
+                                        t+=line.charAt(i);
+                                        i++;
+                                    }
                                 }
-                                t+=line.charAt(i);
-                                i++;
+                                else{
+                                    t+=line.charAt(i);
+                                    i++;
+                                }
                             }
                         }
-                        writer.write(t+'\n');
+                        writer.write(t);
+                        if(j!=12)
+                            writer.write("\n");
                         t = "";
                         i+=1;
                     }
