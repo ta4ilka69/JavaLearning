@@ -43,6 +43,6 @@ public class Car implements Comparable<Car> {
     }
 
     public String toString(){
-        return this.carName;
+        return this.carName+" "+this.cool;
     }
 }

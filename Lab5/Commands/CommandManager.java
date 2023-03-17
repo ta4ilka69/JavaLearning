@@ -3,8 +3,6 @@ package Commands;
 import Collection.CollectionManager;
 import Collection.MyCollection;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Scanner;
 
@@ -13,18 +11,9 @@ public class CommandManager {
     private Scanner scanner;
     private CollectionManager collectionManager;
 
-    public CommandManager(InputStream in, MyCollection collection) {
+    public CommandManager(InputStream in, MyCollection collection, boolean auto) {
         this.input = in;
         this.scanner = new Scanner(in);
-        boolean auto = true;
-        if(in instanceof FileInputStream){
-            try {
-                auto = in.equals(new FileInputStream(collection.getPathToSave()));
-            }
-            catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
         collectionManager = new CollectionManager(collection,scanner,auto);
     }
 
@@ -36,9 +25,8 @@ public class CommandManager {
             if(scanner.hasNext()) {
                 nextline = scanner.nextLine();
             }
-            else {
-                break;
-            }
+            new SaveTemp(collectionManager.getCollection()).execute();
         }
+        collectionManager.getCommand(nextline.split(" ")).execute();
     }
 }

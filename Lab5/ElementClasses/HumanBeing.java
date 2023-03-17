@@ -4,7 +4,7 @@ package ElementClasses;
 import java.util.Date;
 
 public class HumanBeing implements Comparable<HumanBeing> {
-    private final int id;
+    private int id;
     private String name;
     private Coordinates coordinates;
     private Date creationDate;
@@ -46,6 +46,10 @@ public class HumanBeing implements Comparable<HumanBeing> {
 
     public int compareTo(HumanBeing humanBeing) {
         return Integer.signum(Integer.compare(this.id, humanBeing.id) + this.name.compareTo(humanBeing.getName()) + this.coordinates.compareTo(humanBeing.getCoordinates()) + this.creationDate.compareTo(humanBeing.getCreationDate()) + this.realHero.compareTo(humanBeing.getRealHero())  + this.impactSpeed.compareTo(humanBeing.getImpactSpeed()) + this.soundtrackName.compareTo(humanBeing.getSoundtrackName()) + Double.compare(this.minutesOfWaiting, humanBeing.getMinutesOfWaiting()) + this.weaponType.compareTo(humanBeing.getWeaponType()) + this.car.compareTo(humanBeing.getCar()));
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -130,5 +134,10 @@ public class HumanBeing implements Comparable<HumanBeing> {
 
     public void setWeaponType(WeaponType weaponType) {
         this.weaponType = weaponType;
+    }
+
+    @Override
+    public String toString() {
+        return this.id+" " + this.name + " " + this.coordinates.xToString()+ ";"+ this.coordinates.yToString()+" "+creationDate.toString()+" "+realHero+" "+hasToothpick+" "+impactSpeed.toString()+ " "+ soundtrackName+" "+ minutesOfWaiting+ " "+ weaponType.toString()+" "+ car.toString();
     }
 }

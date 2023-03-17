@@ -6,8 +6,6 @@ import ElementClasses.Car;
 import ElementClasses.Coordinates;
 import ElementClasses.HumanBeing;
 import ElementClasses.WeaponType;
-
-import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.text.DateFormat;
 import java.util.Date;
@@ -34,12 +32,12 @@ public class ElementReader {
             j++;
         }
         for (int i = j; i < 13; i++) {
-            if (!auto && scanner.hasNext()) {
-                String line = scanner.nextLine();
-                if (!auto && i == 12) {
-                    args[i] = getField(13, line);
-                } else if (!auto || i != 4) {
-                    args[i] = getField(i, line);
+            if (!auto && scanner.hasNext()&&!scanner.equals(interactor)) {
+                if (i == 12) {
+                    args[i] = getField(13, scanner.nextLine());
+                }
+                else {
+                    args[i] = getField(i, scanner.nextLine());
                 }
             } else {
                 if (!auto || i != 4) {
@@ -86,20 +84,27 @@ public class ElementReader {
             case 11 -> {
                 System.out.println("Enter " + fields[10].getType().getDeclaredFields()[0].getName() + ": ");
             }
+
             case 1->{
-                System.out.println("Enter " + fields[1].getName() + ": ");
+                System.out.println("Enter " + fields[arg].getName() + ": ");
             }
             default -> {
                 System.out.println("Enter " + fields[arg-1].getName() + ": ");
             }
         }
-        return getField(arg, interactor.nextLine());
+        return getField(arg,interactor.nextLine());
     }
 
     private Object getField(int i, String line) {
         switch (i) {
             case 0 -> {
-                return this.collection.getFreeId();
+                try{
+                    int id = Integer.parseInt(line);
+                    return id<1?this.collection.getFreeId():id;
+                }
+                catch (NumberFormatException e) {
+                    return this.collection.getFreeId();
+                }
             }
             case 1, 8, 11 -> {
                 if (line.length() == 0 && i != 11) {

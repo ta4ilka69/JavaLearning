@@ -16,4 +16,7 @@ public class AddElementCommand extends AbstractCommand{
     public static String info(){
         return "add {element} : добавить новый элемент в коллекцию";
     }
+    public String toString(){
+        return "add";
+    }
 }

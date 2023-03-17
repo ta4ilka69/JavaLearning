@@ -2,7 +2,7 @@ package Commands.Interactive;
 
 import Commands.AbstractCommand;
 
-public class ErrorCommand extends AbstractCommand {
+public class ErrorCommand extends AbstractCommand{
     private String problem;
     private String command;
     public ErrorCommand(String problem,String command){
@@ -18,5 +18,10 @@ public class ErrorCommand extends AbstractCommand {
 
     public static String info(){
         return "Command with error";
+    }
+
+    @Override
+    public String toString() {
+        return "error";
     }
 }

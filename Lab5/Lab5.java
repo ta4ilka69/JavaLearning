@@ -8,7 +8,7 @@ public class Lab5 {
         CollectionReader reader = new CollectionReader(c);
         reader.execute();
         System.out.println("Collection was read from file");
-        CommandManager in = new CommandManager(System.in,c);
+        CommandManager in = new CommandManager(System.in,c,true);
         in.start();
     }
 }

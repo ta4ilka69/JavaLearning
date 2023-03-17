@@ -1,6 +1,7 @@
 package Commands.Interactive;
 
 import Commands.AbstractCommand;
+import Commands.Executable;
 
 public class UnknownCommand extends AbstractCommand {
     private String command;

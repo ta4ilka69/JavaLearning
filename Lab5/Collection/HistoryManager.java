@@ -24,4 +24,11 @@ public class HistoryManager {
     public ArrayList<AbstractCommand> history(){
         return this.history;
     }
+
+    public void printLast(){
+        ArrayList<AbstractCommand> l = history();
+        for(AbstractCommand c:l){
+            System.out.println(c.toString());
+        }
+    }
 }

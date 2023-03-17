@@ -21,4 +21,7 @@ public class AbstractCommand implements Executable {
     public MyCollection getCollection() {
         return collection;
     }
+    public String toString(){
+        return "Abstract command";
+    }
 }
