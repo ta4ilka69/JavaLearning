@@ -35,7 +35,8 @@ public class CollectionWriter implements Executable {
                 s+=',';
                 s+=h.getRealHero().toString();
                 s+=',';
-                s+=h.getHasToothpick().toString();
+                String tooth = h.getHasToothpick()==null?"":h.getHasToothpick().toString();
+                s+=tooth;
                 s+=',';
                 s+=h.getImpactSpeed().toString();
                 s+=',';
@@ -44,7 +45,8 @@ public class CollectionWriter implements Executable {
                 s+=',';
                 s+=Double.toString(h.getMinutesOfWaiting());
                 s+=',';
-                s+=h.getWeaponType().toString();
+                String weapon = h.getWeaponType()==null?"":h.getWeaponType().toString();
+                s+=weapon;
                 s+=',';
                 String car = h.getCar().toString();
                 s += screening(car);
