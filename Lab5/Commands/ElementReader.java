@@ -6,52 +6,47 @@ import ElementClasses.Car;
 import ElementClasses.Coordinates;
 import ElementClasses.HumanBeing;
 import ElementClasses.WeaponType;
+import FileManager.ReaderMode;
 
-import java.io.InputStream;
 import java.lang.reflect.Field;
-import java.text.DateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
 public class ElementReader {
     private Scanner scanner;
-    private boolean auto;
+    private ReaderMode mode;
     private MyCollection collection;
     private Scanner interactor = new Scanner(System.in);
     private static Field[] fields = HumanBeing.class.getDeclaredFields();
 
-    public ElementReader(Scanner scanner, MyCollection collection, boolean auto) {
+    public ElementReader(Scanner scanner, MyCollection collection, ReaderMode mode) {
         this.scanner = scanner;
         this.collection = collection;
-        this.auto = auto;
+        this.mode = mode;
     }
 
     public HumanBeing getElement() {
         Object[] args = new Object[13];
-        if (auto || !scanner.hasNextInt()) {
+        if (mode != ReaderMode.FILE || !scanner.hasNext()) {
             args[0] = this.collection.getFreeId();
         } else {
-            args[0] = Integer.parseInt(scanner.nextLine());
+            args[0] = getField(0, scanner.nextLine());
         }
         for (int i = 1; i < 13; i++) {
-            if(i==4){
-                if(auto||!scanner.hasNext()){
+            if (i == 4) {
+                if (!scanner.hasNext() || mode != ReaderMode.FILE) {
                     args[4] = new Date();
+                } else {
+                    args[4] = getField(i, scanner.nextLine());
                 }
-                else{
-                    args[4] = (Date) getField(i, scanner.nextLine());
-                }
-            }
-            else if ((!auto && scanner.hasNext()) || (scanner != interactor)) {
+            } else if (mode != ReaderMode.CONSOLE) {
                 if (i == 12) {
                     args[i] = getField(13, scanner.nextLine());
                 } else {
                     args[i] = getField(i, scanner.nextLine());
                 }
             } else {
-                if (!auto) {
-                    args[i] = getLine(i, "");
-                }
+                args[i] = getLine(i, "");
             }
         }
         Boolean tooth;
@@ -66,7 +61,7 @@ public class ElementReader {
             c.setCool((boolean) args[12]);
             h.setCar(c);
         }
-        if (!auto) {
+        if (ReaderMode.FILE == mode) {
             h.setCreationDate((Date) args[4]);
         }
         return h;
@@ -77,25 +72,17 @@ public class ElementReader {
             System.out.println(err);
         }
         switch (arg) {
-            case 2, 3 -> {
-                System.out.println("Enter " + fields[2].getType().getDeclaredFields()[arg - 2].getName() + ": ");
-            }
-            case 10 -> {
-                System.out.println("Enter " + fields[9].getName() + " (choose from " + WeaponType.AXE + ", " + WeaponType.RIFLE + ", " + WeaponType.MACHINE_GUN + "): ");
-            }
-            case 12 -> {
-                System.out.println("Do you want to set your car cool (it wouldn`t make your car cool anyway) (y/n)?");
-            }
-            case 13 -> {
-                System.out.println("Enter " + fields[10].getType().getDeclaredFields()[1].getName() + ": ");
-            }
-            case 11 -> {
-                System.out.println("Enter " + fields[10].getType().getDeclaredFields()[0].getName() + ": ");
-            }
+            case 2, 3 ->
+                    System.out.println("Enter " + fields[2].getType().getDeclaredFields()[arg - 2].getName() + ": ");
+            case 10 ->
+                    System.out.println("Enter " + fields[9].getName() + " (choose from " + WeaponType.AXE + ", " + WeaponType.RIFLE + ", " + WeaponType.MACHINE_GUN + "): ");
 
-            case 1 -> {
-                System.out.println("Enter " + fields[arg].getName() + ": ");
-            }
+            case 12 ->
+                    System.out.println("Do you want to set your car cool (it wouldn`t make your car cool anyway) (y/n)?");
+
+            case 13 -> System.out.println("Enter " + fields[10].getType().getDeclaredFields()[1].getName() + ": ");
+            case 11 -> System.out.println("Enter " + fields[10].getType().getDeclaredFields()[0].getName() + ": ");
+            case 1 -> System.out.println("Enter " + fields[arg].getName() + ": ");
             default -> {
                 System.out.println("Enter " + fields[arg - 1].getName() + ": ");
             }
@@ -174,8 +161,7 @@ public class ElementReader {
             }
             case 4 -> {
                 try {
-                    Date date = DateFormat.getDateInstance().parse(line);
-                    return date;
+                    return new Date(Long.parseLong(line));
                 } catch (Exception e) {
                     return new Date();
                 }

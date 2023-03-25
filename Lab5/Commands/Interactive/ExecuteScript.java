@@ -3,22 +3,21 @@ package Commands.Interactive;
 import Commands.AbstractCommand;
 import Commands.CommandManager;
 import Collection.MyCollection;
+import FileManager.ReaderMode;
 
 import java.io.*;
 
 public class ExecuteScript extends AbstractCommand {
 
     private FileInputStream input;
-    private boolean auto;
-    public ExecuteScript(MyCollection collection,String path, boolean auto) throws FileNotFoundException {
+    public ExecuteScript(MyCollection collection,String path) throws FileNotFoundException {
         super(collection, null);
         this.input = new FileInputStream(path);
-        this.auto = auto;
     }
 
     @Override
     public void execute() {
-        CommandManager manager = new CommandManager(this.input,this.getCollection(),this.auto);
+        CommandManager manager = new CommandManager(this.input,this.getCollection(), ReaderMode.SCRIPT);
         manager.start();
     }
     public static String info(){

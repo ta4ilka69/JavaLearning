@@ -20,8 +20,9 @@ public class CollectionWriter implements Executable {
         try {
             FileOutputStream file = new FileOutputStream(pathToFile);
             OutputStreamWriter writer = new OutputStreamWriter(file);
-            for (HumanBeing h:collection.list()
-                 ) {
+            HumanBeing[] list = collection.list();
+            for (int i = 0;i<list.length;i++){
+                HumanBeing h = list[i];
                 String s=h.getId().toString()+',';
                 String name = h.getName();
                 s += screening(name);
@@ -31,7 +32,7 @@ public class CollectionWriter implements Executable {
                 s+=',';
                 s+=c.yToString();
                 s+=',';
-                s+=h.getCreationDate().toString();
+                s+=h.getCreationDate().getTime();
                 s+=',';
                 s+=h.getRealHero().toString();
                 s+=',';
@@ -52,7 +53,9 @@ public class CollectionWriter implements Executable {
                 s += screening(car);
                 s+=',';
                 s+=Boolean.toString(h.getCar().isCool());
-                s+='\n';
+                if(i!=list.length-1) {
+                    s += '\n';
+                }
                 writer.write(s);
             }
             writer.close();

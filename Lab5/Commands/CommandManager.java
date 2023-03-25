@@ -2,6 +2,7 @@ package Commands;
 
 import Collection.CollectionManager;
 import Collection.MyCollection;
+import FileManager.ReaderMode;
 
 import java.io.InputStream;
 import java.util.Scanner;
@@ -11,10 +12,10 @@ public class CommandManager {
     private Scanner scanner;
     private CollectionManager collectionManager;
 
-    public CommandManager(InputStream in, MyCollection collection, boolean auto) {
+    public CommandManager(InputStream in, MyCollection collection, ReaderMode mode) {
         this.input = in;
         this.scanner = new Scanner(in);
-        collectionManager = new CollectionManager(collection,scanner,auto);
+        collectionManager = new CollectionManager(collection,scanner,mode);
     }
 
     public void start() {

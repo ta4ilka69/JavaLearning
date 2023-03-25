@@ -5,6 +5,7 @@ import Commands.CarReader;
 import Commands.ElementReader;
 import Commands.Interactive.*;
 import ElementClasses.HumanBeing;
+import FileManager.ReaderMode;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -13,13 +14,13 @@ public class CollectionManager {
     private MyCollection collection;
     private HistoryManager historyManager;
     private Scanner scanner;
-    private boolean auto;
+    private ReaderMode mode;
 
 
-    public CollectionManager(MyCollection collection, Scanner scanner, boolean auto){
+    public CollectionManager(MyCollection collection, Scanner scanner, ReaderMode mode){
         this.collection = collection;
         this.scanner = scanner;
-        this.auto = auto;
+        this.mode = mode;
         this.historyManager = new HistoryManager(6);
     }
 
@@ -31,13 +32,13 @@ public class CollectionManager {
         AbstractCommand c;
         c = switch (command) {
             case "add" -> {
-                ElementReader reader = new ElementReader(scanner, collection, auto);
+                ElementReader reader = new ElementReader(scanner, collection, mode);
                 HumanBeing h = reader.getElement();
                 yield new AddElementCommand(collection, h);
             }
             case "execute"->{
                 try {
-                    yield  new ExecuteScript(collection, commandLine[1],true);
+                    yield  new ExecuteScript(collection, commandLine[1]);
                 }
                 catch (FileNotFoundException e){
                     yield  new ErrorCommand("File for executing not found",command);
@@ -48,7 +49,7 @@ public class CollectionManager {
             case "save"-> new SaveCommand(collection);
             case "remove_head"-> new RemoveHeadCommand(collection);
             case "remove_greater"->{
-                ElementReader reader = new ElementReader(scanner,collection,true);
+                ElementReader reader = new ElementReader(scanner,collection,mode);
                 yield new RemoveGreaterCommand(collection,reader.getElement());
             }
             case "remove_by_id"->{
@@ -74,7 +75,7 @@ public class CollectionManager {
                 int id;
                 try {
                     id = Integer.parseInt(commandLine[1]);
-                    ElementReader reader = new ElementReader(scanner,collection,auto);
+                    ElementReader reader = new ElementReader(scanner,collection,mode);
                     yield new UpdateCommand(collection,reader.getElement(),id);
                 }
                 catch (NumberFormatException e){
