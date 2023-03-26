@@ -5,6 +5,11 @@ import FileManager.ReaderMode;
 import FileManager.TempLoader;
 
 public class Lab5 {
+    /**
+     * @param args
+     * Entry point of the program
+     * Initialize
+     */
     public static void main(String[] args) {
         TempLoader load = new TempLoader("tmp/temp.csv",args[0]);
         MyCollection c = new MyCollection(load.check());

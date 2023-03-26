@@ -27,7 +27,7 @@ public class ElementReader {
 
     public HumanBeing getElement() {
         Object[] args = new Object[13];
-        if (mode != ReaderMode.FILE || !scanner.hasNext()) {
+        if ((mode != ReaderMode.FILE && ReaderMode.GREATER!=mode) || !scanner.hasNext()) {
             args[0] = this.collection.getFreeId();
         } else {
             args[0] = getField(0, scanner.nextLine());
