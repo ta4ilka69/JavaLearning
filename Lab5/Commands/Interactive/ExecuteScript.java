@@ -10,14 +10,16 @@ import java.io.*;
 public class ExecuteScript extends AbstractCommand {
 
     private FileInputStream input;
-    public ExecuteScript(MyCollection collection,String path) throws FileNotFoundException {
+    private ReaderMode mode;
+    public ExecuteScript(MyCollection collection,String path,boolean file) throws FileNotFoundException {
         super(collection, null);
         this.input = new FileInputStream(path);
+        this.mode = file?ReaderMode.FILE:ReaderMode.SCRIPT;
     }
 
     @Override
     public void execute() {
-        CommandManager manager = new CommandManager(this.input,this.getCollection(), ReaderMode.SCRIPT);
+        CommandManager manager = new CommandManager(this.input,this.getCollection(), mode);
         manager.start();
     }
     public static String info(){

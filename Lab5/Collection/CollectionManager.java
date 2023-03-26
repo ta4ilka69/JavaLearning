@@ -38,14 +38,14 @@ public class CollectionManager {
             }
             case "execute"->{
                 try {
-                    yield  new ExecuteScript(collection, commandLine[1]);
+                    yield  new ExecuteScript(collection, commandLine[1],false);
                 }
                 catch (FileNotFoundException e){
                     yield  new ErrorCommand("File for executing not found",command);
                 }
             }
             case "help"-> new HelpCommand();
-            case "exit"-> new ExitCommand(collection,scanner);
+            case "exit"-> new ExitCommand(collection,scanner,mode);
             case "save"-> new SaveCommand(collection);
             case "remove_head"-> new RemoveHeadCommand(collection);
             case "remove_greater"->{
@@ -66,7 +66,7 @@ public class CollectionManager {
                 CarReader reader = new CarReader(System.in);
                 yield new CountGreaterThanCarCommand(collection,reader.getCar());
             }
-            case "history"-> new HistoryCommand(this);
+            case "history"-> new HistoryCommand(this.historyManager,collection);
             case "info"-> new InfoCommand(collection);
             case "show"-> new ShowCommand(collection);
             case "print_descending"-> new PrintDescendingCommand(collection);

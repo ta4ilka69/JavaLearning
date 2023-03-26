@@ -1,17 +1,19 @@
 package Commands.Interactive;
 
-import Collection.CollectionManager;
+import Collection.HistoryManager;
+import Collection.MyCollection;
 import Commands.AbstractCommand;
 
 public class HistoryCommand extends AbstractCommand {
-    private CollectionManager manager;
-    public HistoryCommand(CollectionManager manager){
-        super(manager.getCollection(),null);
+    private HistoryManager manager;
+    public HistoryCommand(HistoryManager manager, MyCollection collection){
+        super(collection,null);
+        this.manager = manager;
     }
 
     @Override
     public void execute() {
-        manager.history().printLast();
+        this.manager.printLast();
     }
 
     public static String info(){

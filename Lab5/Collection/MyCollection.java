@@ -9,25 +9,24 @@ import ElementClasses.HumanBeing;
 
 public class MyCollection {
     private PriorityQueue<HumanBeing> collection;
-    private LocalDate creationDate;
+    private Date creationDate;
     private String pathToSave;
 
     private ArrayList<Integer> id;
     public MyCollection(String path) {
         this.collection = new PriorityQueue<>();
         this.pathToSave = path;
-        creationDate = LocalDate.now();
+        creationDate = new Date();
         id = new ArrayList<>();
     }
 
-    public LocalDate getCreationDate() {
+    public Date getCreationDate() {
         return creationDate;
     }
 
     public void add(HumanBeing h) {
         if(id.contains(h.getId())) {
             h.setId(this.getFreeId());
-
         }
         this.collection.offer(h);
         this.id.add(h.getId());

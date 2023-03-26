@@ -13,9 +13,11 @@ public class SaveCommand extends AbstractCommand {
 
     @Override
     public void execute() {
+        String oldPath = getCollection().getPathToSave();
         getCollection().setPathToSave(path);
         CollectionWriter writer = new CollectionWriter(this.getCollection());
         writer.execute();
+        getCollection().setPathToSave(oldPath);
     }
 
     public static String info(){

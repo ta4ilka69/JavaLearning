@@ -67,14 +67,15 @@ public class CollectionReader implements Executable {
                             }
                         }
                         writer.write(t);
-                        if(j!=12)
+                        if(j!=12||scanner.hasNext())
                             writer.write("\n");
                         t = "";
                         i+=1;
                     }
                 }
+                writer.write("\nexit");
                 writer.close();
-                ExecuteScript script = new ExecuteScript(this.collection,"tmp/reading_script" + u + ".txt");
+                ExecuteScript script = new ExecuteScript(this.collection,"tmp/reading_script" + u + ".txt",true);
                 script.execute();
             } catch (Exception e) {
                 u += 1;

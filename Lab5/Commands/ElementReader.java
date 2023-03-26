@@ -34,15 +34,15 @@ public class ElementReader {
         }
         for (int i = 1; i < 13; i++) {
             if (i == 4) {
-                if (!scanner.hasNext() || mode != ReaderMode.FILE) {
+                if (mode != ReaderMode.FILE || !scanner.hasNext()) {
                     args[4] = new Date();
                 } else {
                     args[4] = getField(i, scanner.nextLine());
                 }
             } else if (mode != ReaderMode.CONSOLE) {
-                if (i == 12) {
+                if (i == 12&&mode==ReaderMode.FILE&&scanner.hasNext()) {
                     args[i] = getField(13, scanner.nextLine());
-                } else {
+                } else if(i!=12&&scanner.hasNext()){
                     args[i] = getField(i, scanner.nextLine());
                 }
             } else {

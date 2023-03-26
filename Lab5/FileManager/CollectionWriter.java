@@ -49,7 +49,7 @@ public class CollectionWriter implements Executable {
                 String weapon = h.getWeaponType()==null?"":h.getWeaponType().toString();
                 s+=weapon;
                 s+=',';
-                String car = h.getCar().toString();
+                String car = h.getCar().getCarName();
                 s += screening(car);
                 s+=',';
                 s+=Boolean.toString(h.getCar().isCool());

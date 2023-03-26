@@ -2,12 +2,15 @@ import Commands.CommandManager;
 import Collection.MyCollection;
 import FileManager.CollectionReader;
 import FileManager.ReaderMode;
+import FileManager.TempLoader;
 
 public class Lab5 {
     public static void main(String[] args) {
-        MyCollection c = new MyCollection(args[0]);
+        TempLoader load = new TempLoader("tmp/temp.csv",args[0]);
+        MyCollection c = new MyCollection(load.check());
         CollectionReader reader = new CollectionReader(c);
         reader.execute();
+        c.setPathToSave(args[0]);
         System.out.println("Collection was read from file");
         CommandManager in = new CommandManager(System.in,c, ReaderMode.CONSOLE);
         in.start();
