@@ -17,7 +17,7 @@ public class Lab5 {
         reader.execute();
         c.setPathToSave(args[0]);
         System.out.println("Collection was read from file");
-        CommandManager in = new CommandManager(System.in,c, ReaderMode.CONSOLE);
+        CommandManager in = new CommandManager(System.in,c, ReaderMode.CONSOLE,0);
         in.start();
     }
 }

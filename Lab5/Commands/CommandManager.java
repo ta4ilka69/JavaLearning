@@ -13,10 +13,10 @@ public class CommandManager {
     private CollectionManager collectionManager;
     private ReaderMode mode;
 
-    public CommandManager(InputStream in, MyCollection collection, ReaderMode mode) {
+    public CommandManager(InputStream in, MyCollection collection, ReaderMode mode, int deep) {
         this.input = in;
         this.scanner = new Scanner(in);
-        collectionManager = new CollectionManager(collection, scanner, mode);
+        collectionManager = new CollectionManager(collection, scanner, mode, deep);
         this.mode = mode;
     }
 

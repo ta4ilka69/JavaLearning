@@ -139,6 +139,13 @@ public class HumanBeing implements Comparable<HumanBeing> {
 
     @Override
     public String toString() {
-        return this.id+" " + this.name + " " + this.coordinates.xToString()+ ";"+ this.coordinates.yToString()+" "+creationDate.toString()+" "+realHero+" "+hasToothpick+" "+impactSpeed.toString()+ " "+ soundtrackName+" "+ minutesOfWaiting+ " "+ weaponType.toString()+" "+ car.toString();
+        String weap;
+        if(weaponType==null){
+            weap = "null";
+        }
+        else{
+            weap = weaponType.toString();
+        }
+        return this.id+" " + this.name + " " + this.coordinates.xToString()+ ";"+ this.coordinates.yToString()+" "+creationDate.toString()+" "+realHero+" "+hasToothpick+" "+impactSpeed.toString()+ " "+ soundtrackName+" "+ minutesOfWaiting+ " "+ weap +" "+ car.toString();
     }
 }

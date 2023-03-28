@@ -16,19 +16,29 @@ public class CollectionManager {
     private Scanner scanner;
     private ReaderMode mode;
 
+    private int deep;
 
-    public CollectionManager(MyCollection collection, Scanner scanner, ReaderMode mode){
+    public CollectionManager(MyCollection collection, Scanner scanner, ReaderMode mode, int deep) {
         this.collection = collection;
         this.scanner = scanner;
         this.mode = mode;
         this.historyManager = new HistoryManager(6);
+        this.deep = deep;
     }
 
     public MyCollection getCollection() {
         return collection;
     }
-    public AbstractCommand getCommand(String[] commandLine){
-        String command = commandLine[0];
+
+    public AbstractCommand getCommand(String[] commandLineRaw) {
+        String command = commandLineRaw[0];
+        String[] commandLine;
+        if (commandLineRaw.length == 1) {
+            commandLine = new String[]{commandLineRaw[0], ""};
+        }
+        else{
+            commandLine = commandLineRaw;
+        }
         AbstractCommand c;
         c = switch (command) {
             case "add" -> {
@@ -36,60 +46,61 @@ public class CollectionManager {
                 HumanBeing h = reader.getElement();
                 yield new AddElementCommand(collection, h);
             }
-            case "execute"->{
+            case "execute" -> {
                 try {
-                    yield  new ExecuteScript(collection, commandLine[1],false);
-                }
-                catch (FileNotFoundException e){
-                    yield  new ErrorCommand("File for executing not found",command);
+                    yield new ExecuteScript(collection, commandLine[1], false, deep+1);
+                } catch (FileNotFoundException e) {
+                    yield new ErrorCommand("File for executing not found", command);
                 }
             }
-            case "help"-> new HelpCommand();
-            case "exit"-> new ExitCommand(collection,scanner,mode);
-            case "save"-> new SaveCommand(collection);
-            case "remove_head"-> new RemoveHeadCommand(collection);
-            case "remove_greater"->{
-                ElementReader reader = new ElementReader(scanner,collection,mode);
-                yield new RemoveGreaterCommand(collection,reader.getElement());
+            case "help" -> new HelpCommand();
+            case "exit" -> new ExitCommand(collection, scanner, mode);
+            case "save" -> new SaveCommand(collection);
+            case "remove_head" -> new RemoveHeadCommand(collection);
+            case "remove_greater" -> {
+                ElementReader reader = new ElementReader(scanner, collection, mode);
+                yield new RemoveGreaterCommand(collection, reader.getElement());
             }
-            case "remove_by_id"->{
+            case "remove_by_id" -> {
                 int id;
-                try{
+                try {
                     id = Integer.parseInt(commandLine[1]);
-                    yield new RemoveByIdCommand(collection,id);
-                }
-                catch (NumberFormatException e){
-                    yield new ErrorCommand("id not found or id must be integer","remove_by_id");
+                    yield new RemoveByIdCommand(collection, id);
+                } catch (NumberFormatException e) {
+                    yield new ErrorCommand("id not found or id must be integer", "remove_by_id");
                 }
             }
-            case "count_greater_than_car"->{
+            case "count_greater_than_car" -> {
                 CarReader reader = new CarReader(System.in);
-                yield new CountGreaterThanCarCommand(collection,reader.getCar());
+                yield new CountGreaterThanCarCommand(collection, reader.getCar());
             }
-            case "history"-> new HistoryCommand(this.historyManager,collection);
-            case "info"-> new InfoCommand(collection);
-            case "show"-> new ShowCommand(collection);
-            case "print_descending"-> new PrintDescendingCommand(collection);
-            case "print_field_ascending_soundtrack_name"-> new PrintSoundtrackUpCommand(collection);
-            case "update"->{
+            case "history" -> new HistoryCommand(this.historyManager, collection);
+            case "info" -> new InfoCommand(collection);
+            case "show" -> new ShowCommand(collection);
+            case "print_descending" -> new PrintDescendingCommand(collection);
+            case "print_field_ascending_soundtrack_name" -> new PrintSoundtrackUpCommand(collection);
+            case "update" -> {
                 int id;
                 try {
                     id = Integer.parseInt(commandLine[1]);
-                    ElementReader reader = new ElementReader(scanner,collection,mode);
-                    yield new UpdateCommand(collection,reader.getElement(),id);
-                }
-                catch (NumberFormatException e){
-                    yield  new ErrorCommand("id not found or id must be integer","update");
+                    if (this.collection.getElementById(id) == null) {
+                        throw new NumberFormatException();
+                    }
+                    ElementReader reader = new ElementReader(scanner, collection, mode);
+                    yield new UpdateCommand(collection, reader.getElement(), id);
+                } catch (NumberFormatException e) {
+                    yield new ErrorCommand("id not found or id must be integer", "update");
                 }
             }
-            case "clear"-> new ClearCommand(collection);
+            case "clear" -> new ClearCommand(collection);
             default -> new UnknownCommand(command);
 
         };
         historyManager.update(c);
         return c;
     }
-    public HistoryManager history(){
+
+    public HistoryManager history() {
         return this.historyManager;
     }
 }

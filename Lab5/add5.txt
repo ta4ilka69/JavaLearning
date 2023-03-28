@@ -1,22 +1,2 @@
-add
-lol
-31
-214
-true
-false
-4124.214
-tape
-32.432
-AXE
-Honda
-add
-lol1
-32
-2141
-true
-true
-412.214
-kizaru
-3.432
-MACHINE_GUN
-skoda
+execute scr.txt
+info

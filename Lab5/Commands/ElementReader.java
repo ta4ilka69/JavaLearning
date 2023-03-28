@@ -27,19 +27,22 @@ public class ElementReader {
 
     public HumanBeing getElement() {
         Object[] args = new Object[13];
-        if ((mode != ReaderMode.FILE && ReaderMode.GREATER!=mode) || !scanner.hasNext()) {
+        if(mode==ReaderMode.GREATER){
+            args[0] = getLine(0,"");
+        }
+        else if (mode != ReaderMode.FILE || !scanner.hasNext()) {
             args[0] = this.collection.getFreeId();
         } else {
             args[0] = getField(0, scanner.nextLine());
         }
         for (int i = 1; i < 13; i++) {
-            if (i == 4) {
+            if (i == 4 && ReaderMode.GREATER!=mode) {
                 if (mode != ReaderMode.FILE || !scanner.hasNext()) {
                     args[4] = new Date();
                 } else {
                     args[4] = getField(i, scanner.nextLine());
                 }
-            } else if (mode != ReaderMode.CONSOLE) {
+            } else if (mode != ReaderMode.CONSOLE&&mode!=ReaderMode.GREATER) {
                 if (i == 12&&mode==ReaderMode.FILE&&scanner.hasNext()) {
                     args[i] = getField(13, scanner.nextLine());
                 } else if(i!=12&&scanner.hasNext()){
@@ -76,16 +79,13 @@ public class ElementReader {
                     System.out.println("Enter " + fields[2].getType().getDeclaredFields()[arg - 2].getName() + ": ");
             case 10 ->
                     System.out.println("Enter " + fields[9].getName() + " (choose from " + WeaponType.AXE + ", " + WeaponType.RIFLE + ", " + WeaponType.MACHINE_GUN + "): ");
-
             case 12 ->
                     System.out.println("Do you want to set your car cool (it wouldn`t make your car cool anyway) (y/n)?");
-
             case 13 -> System.out.println("Enter " + fields[10].getType().getDeclaredFields()[1].getName() + ": ");
             case 11 -> System.out.println("Enter " + fields[10].getType().getDeclaredFields()[0].getName() + ": ");
             case 1 -> System.out.println("Enter " + fields[arg].getName() + ": ");
-            default -> {
-                System.out.println("Enter " + fields[arg - 1].getName() + ": ");
-            }
+            case 4 -> System.out.println("Enter date (ms from 01.01.1970): ");
+            default -> System.out.println("Enter " + fields[arg - 1].getName() + ": ");
         }
         return getField(arg, interactor.nextLine());
     }
@@ -95,9 +95,17 @@ public class ElementReader {
             case 0 -> {
                 try {
                     int id = Integer.parseInt(line);
-                    return id < 1 ? this.collection.getFreeId() : id;
+                    if(id<1){
+                        throw new NumberFormatException();
+                    }
+                    else{
+                        return id;
+                    }
                 } catch (NumberFormatException e) {
-                    return this.collection.getFreeId();
+                    if(ReaderMode.GREATER!=mode) {
+                        return this.collection.getFreeId();
+                    }
+                    return getLine(i,"id must be integer!");
                 }
             }
             case 1, 8, 11 -> {
@@ -163,7 +171,10 @@ public class ElementReader {
                 try {
                     return new Date(Long.parseLong(line));
                 } catch (Exception e) {
-                    return new Date();
+                    if(ReaderMode.GREATER!=mode) {
+                        return new Date();
+                    }
+                    return getLine(i,"Ms from 01.01.1970 must be integer!");
                 }
             }
             case 12 -> {
