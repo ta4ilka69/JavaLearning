@@ -1,8 +1,11 @@
 import Collection.MyCollection;
 import Commands.CommandManager;
+import Commands.Interactive.ExitCommand;
 import FileManager.CollectionReader;
 import FileManager.ReaderMode;
 import FileManager.TempLoader;
+
+import java.util.Scanner;
 
 /**
  * Main class of programm.
@@ -32,6 +35,11 @@ public class Lab5 {
             c.setPathToSave(args[0]);
         }
         CommandManager in = new CommandManager(System.in, c, ReaderMode.CONSOLE, 0);
-        in.start();
+        try {
+            in.start();
+        }
+        catch (StackOverflowError e){
+            new ExitCommand(c,new Scanner(System.in),ReaderMode.CONSOLE).execute();
+        }
     }
 }

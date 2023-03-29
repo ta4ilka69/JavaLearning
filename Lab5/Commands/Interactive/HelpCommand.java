@@ -2,11 +2,21 @@ package Commands.Interactive;
 
 import Commands.AbstractCommand;
 
+/**
+ * Command for getting all commands and their functions.
+ * @see AbstractCommand
+ */
 public class HelpCommand extends AbstractCommand {
+    /**
+     * Initialize with null arguments. We don't need collection or element.
+     */
     public HelpCommand() {
         super(null, null);
     }
 
+    /**
+     * Prints all commands and their descriptions.
+     */
     @Override
     public void execute() {
         System.out.println(AddElementCommand.info());
@@ -26,11 +36,15 @@ public class HelpCommand extends AbstractCommand {
         System.out.println(PrintDescendingCommand.info());
         System.out.println(PrintSoundtrackUpCommand.info());
     }
-
+    /**
+     * @return information for "help" command.
+     */
     public static String info() {
         return "help : вывести справку по доступным командам";
     }
-
+    /**
+     * @return name of command.
+     */
     public String toString() {
         return "help";
     }

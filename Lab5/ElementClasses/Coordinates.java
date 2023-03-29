@@ -40,7 +40,7 @@ public class Coordinates implements Comparable<Coordinates> {
     }
 
     /**
-     * Comparing by x,y. If 0, could be mean as incomparable (x_1>x_2 and y_1<y_2).
+     * Comparing by x,y. If 0, could be mean as incomparable (x_1 bigger x_2 and y_1 less y_2).
      * @param coordinates the Coordinates object to be compared.
      * @return 1 if this is bigger than given, -1 if less, 0 if +-same.
      */

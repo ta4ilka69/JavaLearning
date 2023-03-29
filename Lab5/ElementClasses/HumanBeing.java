@@ -67,7 +67,7 @@ public class HumanBeing implements Comparable<HumanBeing> {
      * @param minutesOfWaiting sets minutesOfWaiting.
      * @param weaponType sets weapon for our hero.
      * @param car sets car for hero.
-     * @throws IllegalArgumentException when some arguments are null and banned for null or id<0
+     * @throws IllegalArgumentException when some arguments are null and banned for null or id less than 1.
      */
     public HumanBeing(
             Integer id,

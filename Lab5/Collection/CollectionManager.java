@@ -10,13 +10,42 @@ import FileManager.ReaderMode;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/**
+ * Class that works with collection and identify commands.
+ * @see MyCollection
+ */
 public class CollectionManager {
+    /**
+     * collection we are working with.
+     */
     private MyCollection collection;
+    /**
+     * History manager.
+     * @see HistoryManager
+     */
     private HistoryManager historyManager;
+    /**
+     * Scanner for reading commands.
+     */
     private Scanner scanner;
+    /**
+     * ReaderMode for executing.
+     * @see ReaderMode
+     */
     private ReaderMode mode;
+    /**
+     * Depth of executing commands. To control recursion depth.
+     */
 
     private int deep;
+
+    /**
+     * Initialize object.
+     * @param collection sets collection.
+     * @param scanner sets scanner,
+     * @param mode sets mode.
+     * @param deep sets depth.
+     */
 
     public CollectionManager(MyCollection collection, Scanner scanner, ReaderMode mode, int deep) {
         this.collection = collection;
@@ -26,10 +55,20 @@ public class CollectionManager {
         this.deep = deep;
     }
 
+    /**
+     * Getter for collection.
+     * @return collection.
+     */
     public MyCollection getCollection() {
         return collection;
     }
 
+    /**
+     * Parse line into command.
+     * @param commandLineRaw line for parsing.
+     * @return some command that extends AbstractCommand
+     * @see AbstractCommand
+     */
     public AbstractCommand getCommand(String[] commandLineRaw) {
         String command = commandLineRaw[0];
         String[] commandLine;
@@ -99,6 +138,9 @@ public class CollectionManager {
         return c;
     }
 
+    /**
+     * @return history manager.
+     */
     public HistoryManager history() {
         return this.historyManager;
     }
