@@ -4,8 +4,8 @@ import Collection.MyCollection;
 import Commands.AbstractCommand;
 
 public class ClearCommand extends AbstractCommand {
-    public ClearCommand(MyCollection collection){
-        super(collection,null);
+    public ClearCommand(MyCollection collection) {
+        super(collection, null);
     }
 
     @Override
@@ -18,7 +18,7 @@ public class ClearCommand extends AbstractCommand {
         return "clear";
     }
 
-    public static String info(){
+    public static String info() {
         return "clear : очистить коллекцию";
     }
 }

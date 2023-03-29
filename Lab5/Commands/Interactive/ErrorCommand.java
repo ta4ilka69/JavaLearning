@@ -2,11 +2,12 @@ package Commands.Interactive;
 
 import Commands.AbstractCommand;
 
-public class ErrorCommand extends AbstractCommand{
+public class ErrorCommand extends AbstractCommand {
     private String problem;
     private String command;
-    public ErrorCommand(String problem,String command){
-        super(null,null);
+
+    public ErrorCommand(String problem, String command) {
+        super(null, null);
         this.command = command;
         this.problem = problem;
     }
@@ -16,7 +17,7 @@ public class ErrorCommand extends AbstractCommand{
         System.out.println(this.problem);
     }
 
-    public static String info(){
+    public static String info() {
         return "Command with error";
     }
 

@@ -1,13 +1,14 @@
 package Commands.Interactive;
 
-import Commands.AbstractCommand;
 import Collection.MyCollection;
+import Commands.AbstractCommand;
 import FileManager.CollectionWriter;
 
 public class SaveCommand extends AbstractCommand {
     private String path;
-    public SaveCommand(MyCollection collection){
-        super(collection,null);
+
+    public SaveCommand(MyCollection collection) {
+        super(collection, null);
         this.path = collection.getPathToSave();
     }
 
@@ -20,7 +21,7 @@ public class SaveCommand extends AbstractCommand {
         getCollection().setPathToSave(oldPath);
     }
 
-    public static String info(){
+    public static String info() {
         return "save : сохранить коллекцию в файл";
     }
 
@@ -29,7 +30,7 @@ public class SaveCommand extends AbstractCommand {
         return "save";
     }
 
-    public void setPath(String path){
+    public void setPath(String path) {
         this.path = path;
     }
 }

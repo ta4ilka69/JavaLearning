@@ -35,8 +35,7 @@ public class CollectionManager {
         String[] commandLine;
         if (commandLineRaw.length == 1) {
             commandLine = new String[]{commandLineRaw[0], ""};
-        }
-        else{
+        } else {
             commandLine = commandLineRaw;
         }
         AbstractCommand c;
@@ -48,7 +47,7 @@ public class CollectionManager {
             }
             case "execute" -> {
                 try {
-                    yield new ExecuteScript(collection, commandLine[1], false, deep+1);
+                    yield new ExecuteScript(collection, commandLine[1], false, deep + 1);
                 } catch (FileNotFoundException e) {
                     yield new ErrorCommand("File for executing not found", command);
                 }
@@ -58,7 +57,7 @@ public class CollectionManager {
             case "save" -> new SaveCommand(collection);
             case "remove_head" -> new RemoveHeadCommand(collection);
             case "remove_greater" -> {
-                ElementReader reader = new ElementReader(scanner, collection, mode);
+                ElementReader reader = new ElementReader(scanner, collection, ReaderMode.GREATER);
                 yield new RemoveGreaterCommand(collection, reader.getElement());
             }
             case "remove_by_id" -> {

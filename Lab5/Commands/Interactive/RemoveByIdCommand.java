@@ -5,8 +5,9 @@ import Commands.AbstractCommand;
 
 public class RemoveByIdCommand extends AbstractCommand {
     private int id;
-    public RemoveByIdCommand(MyCollection collection, int id){
-        super(collection,null);
+
+    public RemoveByIdCommand(MyCollection collection, int id) {
+        super(collection, null);
         this.id = id;
     }
 
@@ -20,7 +21,7 @@ public class RemoveByIdCommand extends AbstractCommand {
         return "remove_by_id";
     }
 
-    public static String info(){
+    public static String info() {
         return "remove_by_id id : удалить элемент из коллекции по его id";
     }
 }

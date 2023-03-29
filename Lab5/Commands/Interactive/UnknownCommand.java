@@ -1,12 +1,12 @@
 package Commands.Interactive;
 
 import Commands.AbstractCommand;
-import Commands.Executable;
 
 public class UnknownCommand extends AbstractCommand {
     private String command;
-    public UnknownCommand(String command){
-        super(null,null);
+
+    public UnknownCommand(String command) {
+        super(null, null);
         this.command = command;
     }
 
@@ -15,7 +15,7 @@ public class UnknownCommand extends AbstractCommand {
         System.out.println("Unknown command");
     }
 
-    public static String info(){
+    public static String info() {
         return "No info about unknown command";
     }
 }

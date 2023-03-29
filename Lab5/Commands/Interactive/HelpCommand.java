@@ -3,8 +3,8 @@ package Commands.Interactive;
 import Commands.AbstractCommand;
 
 public class HelpCommand extends AbstractCommand {
-    public HelpCommand(){
-        super(null,null);
+    public HelpCommand() {
+        super(null, null);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class HelpCommand extends AbstractCommand {
         return "help : вывести справку по доступным командам";
     }
 
-    public String toString(){
+    public String toString() {
         return "help";
     }
 }

@@ -4,8 +4,8 @@ import Collection.MyCollection;
 import Commands.AbstractCommand;
 
 public class ShowCommand extends AbstractCommand {
-    public ShowCommand(MyCollection collection){
-        super(collection,null);
+    public ShowCommand(MyCollection collection) {
+        super(collection, null);
     }
 
     @Override
@@ -18,7 +18,7 @@ public class ShowCommand extends AbstractCommand {
         getCollection().show();
     }
 
-    public static String info(){
+    public static String info() {
         return "show : вывести в стандартный поток вывода все элементы коллекции в строковом представлении";
     }
 }

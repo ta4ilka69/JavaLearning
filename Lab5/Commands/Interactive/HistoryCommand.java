@@ -6,8 +6,9 @@ import Commands.AbstractCommand;
 
 public class HistoryCommand extends AbstractCommand {
     private HistoryManager manager;
-    public HistoryCommand(HistoryManager manager, MyCollection collection){
-        super(collection,null);
+
+    public HistoryCommand(HistoryManager manager, MyCollection collection) {
+        super(collection, null);
         this.manager = manager;
     }
 
@@ -16,7 +17,7 @@ public class HistoryCommand extends AbstractCommand {
         this.manager.printLast();
     }
 
-    public static String info(){
+    public static String info() {
         return "history : вывести последние 6 команд (без их аргументов)";
     }
 

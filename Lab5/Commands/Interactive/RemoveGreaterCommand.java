@@ -6,8 +6,8 @@ import ElementClasses.HumanBeing;
 
 
 public class RemoveGreaterCommand extends AbstractCommand {
-    public RemoveGreaterCommand(MyCollection collection, HumanBeing h){
-        super(collection,h);
+    public RemoveGreaterCommand(MyCollection collection, HumanBeing h) {
+        super(collection, h);
     }
 
     @Override
@@ -20,7 +20,7 @@ public class RemoveGreaterCommand extends AbstractCommand {
         return "remove_greater";
     }
 
-    public static String info(){
+    public static String info() {
         return "remove_greater {element} : удалить из коллекции все элементы, превышающие заданный";
     }
 }

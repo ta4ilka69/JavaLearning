@@ -4,8 +4,8 @@ import Collection.MyCollection;
 import Commands.AbstractCommand;
 
 public class InfoCommand extends AbstractCommand {
-    public InfoCommand(MyCollection collection){
-        super(collection,null);
+    public InfoCommand(MyCollection collection) {
+        super(collection, null);
     }
 
     @Override
@@ -18,7 +18,7 @@ public class InfoCommand extends AbstractCommand {
         return "info";
     }
 
-    public static String info(){
+    public static String info() {
         return "info : вывести в стандартный поток вывода информацию о коллекции (тип, дата инициализации, количество элементов и т.д.)";
     }
 }

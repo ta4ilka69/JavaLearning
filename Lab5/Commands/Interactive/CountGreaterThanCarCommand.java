@@ -6,8 +6,9 @@ import ElementClasses.Car;
 
 public class CountGreaterThanCarCommand extends AbstractCommand {
     private Car car;
-    public CountGreaterThanCarCommand(MyCollection collection, Car car){
-        super(collection,null);
+
+    public CountGreaterThanCarCommand(MyCollection collection, Car car) {
+        super(collection, null);
         this.car = car;
     }
 
@@ -16,7 +17,7 @@ public class CountGreaterThanCarCommand extends AbstractCommand {
         return "count_greater_than_car";
     }
 
-    public static String info(){
+    public static String info() {
         return "count_greater_than_car car : вывести количество элементов, значение поля car которых больше заданного";
     }
 
