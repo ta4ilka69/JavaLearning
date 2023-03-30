@@ -202,7 +202,7 @@ public class ElementReader {
             }
             case 10 -> {
                 if (line.length() == 0) {
-                    return null;
+                    return getLine(10,"Can`t be null");
                 }
                 if (line.equals(WeaponType.AXE.toString()) || line.equals(WeaponType.RIFLE.toString()) || line.equals(WeaponType.MACHINE_GUN.toString())) {
                     return WeaponType.valueOf(line);

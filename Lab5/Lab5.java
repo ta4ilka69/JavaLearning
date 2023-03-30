@@ -12,7 +12,7 @@ import java.util.Scanner;
  * Consist of main() method.
  * Lab5.
  * @author ta4ilka69
- * @version 8.3
+ * @version 9.0
  */
 public class Lab5 {
     /**

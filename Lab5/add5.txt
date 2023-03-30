@@ -1,2 +1,0 @@
-execute scr.txt
-info
