@@ -126,7 +126,6 @@ public class MyCollection {
         while (this.id.contains(i)) {
             i++;
         }
-        this.id.add(i);
         return i;
     }
 
