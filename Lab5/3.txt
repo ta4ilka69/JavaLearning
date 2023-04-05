@@ -1,0 +1,3 @@
+execute clear.txt
+execute adding.txt
+execute 3.txt

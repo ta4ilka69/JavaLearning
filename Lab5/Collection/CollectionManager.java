@@ -8,6 +8,7 @@ import ElementClasses.HumanBeing;
 import FileManager.ReaderMode;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -33,26 +34,28 @@ public class CollectionManager {
      * @see ReaderMode
      */
     private ReaderMode mode;
-    /**
-     * Depth of executing commands. To control recursion depth.
-     */
 
-    private int deep;
+    private ArrayList<String> loaded_scripts;
 
     /**
      * Initialize object.
      * @param collection sets collection.
      * @param scanner sets scanner,
      * @param mode sets mode.
-     * @param deep sets depth.
+     * @param list sets already loaded scripts.
      */
 
-    public CollectionManager(MyCollection collection, Scanner scanner, ReaderMode mode, int deep) {
+    public CollectionManager(MyCollection collection, Scanner scanner, ReaderMode mode, ArrayList<String> list) {
         this.collection = collection;
         this.scanner = scanner;
         this.mode = mode;
         this.historyManager = new HistoryManager(6);
-        this.deep = deep;
+        if(list==null){
+            loaded_scripts = new ArrayList<>();
+        }
+        else{
+            loaded_scripts = list;
+        }
     }
 
     /**
@@ -86,7 +89,12 @@ public class CollectionManager {
             }
             case "execute" -> {
                 try {
-                    yield new ExecuteScript(collection, commandLine[1], false, deep + 1);
+                    if(this.loaded_scripts.contains(commandLine[1])){
+                        yield new ErrorCommand("Cannot execute script recursivly.",command);
+                    }
+                    else {
+                        yield new ExecuteScript(collection, commandLine[1], false, loaded_scripts);
+                    }
                 } catch (FileNotFoundException e) {
                     yield new ErrorCommand("File for executing not found", command);
                 }

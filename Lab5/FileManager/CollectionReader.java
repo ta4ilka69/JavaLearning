@@ -97,7 +97,7 @@ public class CollectionReader implements Executable {
                 }
                 writer.write("\nexit");
                 writer.close();
-                ExecuteScript script = new ExecuteScript(this.collection, "tmp/reading_script" + u + ".txt", true, 1);
+                ExecuteScript script = new ExecuteScript(this.collection, "tmp/reading_script" + u + ".txt", true, null);
                 script.execute();
                 System.out.println("Collection was read from file");
             } catch (Exception e) {

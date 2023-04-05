@@ -34,7 +34,7 @@ public class Lab5 {
         } else {
             c.setPathToSave(args[0]);
         }
-        CommandManager in = new CommandManager(System.in, c, ReaderMode.CONSOLE, 0);
+        CommandManager in = new CommandManager(System.in, c, ReaderMode.CONSOLE, null);
         try {
             in.start();
         }

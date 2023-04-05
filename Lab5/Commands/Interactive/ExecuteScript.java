@@ -7,6 +7,7 @@ import FileManager.ReaderMode;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -24,24 +25,31 @@ public class ExecuteScript extends AbstractCommand {
      * @see ReaderMode
      */
     private ReaderMode mode;
-    /**
+    private ArrayList<String> loaded;
+
+    /*
      * Depth of executing scripts. Needed for infinity recursion defining.
      */
-    private int deep;
+   // private int deep;
 
     /**
      * Initialize command.
      * @param collection sets collection.
      * @param path sets path to script.
      * @param file sets file.
-     * @param deep sets depth.
+   //  * @param deep sets depth.
      * @throws FileNotFoundException when file doesn't exist.
      */
-    public ExecuteScript(MyCollection collection, String path, boolean file, int deep) throws FileNotFoundException {
+    public ExecuteScript(MyCollection collection, String path, boolean file, /*int deep*/ ArrayList<String> loadedArg) throws FileNotFoundException {
         super(collection, null);
         this.input = new FileInputStream(path);
+        this.loaded = new ArrayList<>();
+        if(loadedArg!=null) {
+            this.loaded.addAll(loadedArg);
+            this.loaded.add(path);
+        }
         this.mode = file ? ReaderMode.FILE : ReaderMode.SCRIPT;
-        this.deep = deep;
+       // this.deep = deep;
     }
 
     /**
@@ -51,8 +59,8 @@ public class ExecuteScript extends AbstractCommand {
      */
     @Override
     public void execute() {
-        String ans = "";
-        if (deep % 1000 == 0) {
+        //String ans = "";
+        /*if (deep % 1000 == 0) {
             Scanner console = new Scanner(System.in);
             do {
                 System.out.println("Executing deep is " + deep + ", if you continue, there could be untraceable StackOverFlow error, do you want to continue? (y/n)");
@@ -62,18 +70,20 @@ public class ExecuteScript extends AbstractCommand {
         } else {
             ans = "y";
         }
-        if (ans.equals("y")) {
-            CommandManager manager = new CommandManager(this.input, this.getCollection(), mode, deep);
-            try {
-                manager.start();
-            }
-            catch (StackOverflowError e){
+
+         */
+        //if (ans.equals("y")) {
+            CommandManager manager = new CommandManager(this.input, this.getCollection(), mode, this.loaded);
+            manager.start();
+            /*catch (StackOverflowError e){
                 if(deep==1) {
                     System.out.println("You weren`t listening, were you?\n\u001B[31mStackOverFlowError\u001B[0m because of infinity script executing, nice bro!\nI don`t want to work with you actually, see you later!");
                 }
                 throw new StackOverflowError();
             }
-        }
+
+             */
+    //    }
     }
     /**
      * @return information for "help" command.

@@ -5,6 +5,7 @@ import Collection.MyCollection;
 import FileManager.ReaderMode;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -35,14 +36,14 @@ public class CommandManager {
      * @param in sets input source.
      * @param collection for setting CollectionManager.
      * @param mode sets mode.
-     * @param deep for setting CollectionManager.
+     * @param loaded_scripts for setting CollectionManager.
      * @see MyCollection
      * @see CollectionManager
      */
-    public CommandManager(InputStream in, MyCollection collection, ReaderMode mode, int deep) {
+    public CommandManager(InputStream in, MyCollection collection, ReaderMode mode, ArrayList<String> loaded_scripts) {
         this.input = in;
         this.scanner = new Scanner(in);
-        collectionManager = new CollectionManager(collection, scanner, mode, deep);
+        collectionManager = new CollectionManager(collection, scanner, mode, loaded_scripts);
         this.mode = mode;
     }
 

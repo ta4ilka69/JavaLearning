@@ -1,0 +1,61 @@
+add
+First one "",,""
+312
+1352452
+true
+false
+2376.3264
+Rockstar
+13641
+AXE
+Lamba
+true
+add
+Second one "",,""
+128
+-1234
+true
+
+-23.123
+Rap God
+136
+MACHINE_GUN
+ВАЗ 2101
+false
+add
+Third one """""
+257
+-3123
+false
+true
+-231.23
+Dora Dura
+213
+RIFLE
+Porsche 911 GT
+true
+add
+Forth one ,,,,,
+-123
+87284
+false
+false
+2103.93
+Dora Dura
+841
+RIFLE
+Porsche 911
+true
+add
+Fifth one ,,"""
+-23
+-1293
+true
+true
+-231.23
+Maybe Baby
+124
+AXE
+Mustang
+false
+show

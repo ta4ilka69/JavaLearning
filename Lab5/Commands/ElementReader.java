@@ -75,7 +75,7 @@ public class ElementReader {
                     args[4] = getField(i, scanner.nextLine());
                 }
             } else if (mode != ReaderMode.CONSOLE && mode != ReaderMode.GREATER) {
-                if (i == 12 && mode == ReaderMode.FILE && scanner.hasNext()) {
+                if (i == 12 && (mode == ReaderMode.FILE || mode==ReaderMode.SCRIPT) && scanner.hasNext()) {
                     args[i] = getField(13, scanner.nextLine());
                 } else if (i != 12 && scanner.hasNext()) {
                     args[i] = getField(i, scanner.nextLine());
